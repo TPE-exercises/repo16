@@ -66,9 +66,9 @@ public class MyBTree implements BTree {
 	}
 
 	@Override
-	public void addAll(BTree otherTree) {
+	public boolean addAll(BTree otherTree) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
