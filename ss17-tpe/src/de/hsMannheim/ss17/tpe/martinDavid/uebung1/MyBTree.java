@@ -1,7 +1,13 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
 
 public class MyBTree implements BTree {
-
+	private int ordinal;
+	private BTreeNode rootNode;
+	
+	MyBTree(int ordinal) {
+		this.ordinal = ordinal;
+	}
+	
 	@Override
 	public boolean insert(Integer o) {
 		// TODO Auto-generated method stub
@@ -16,38 +22,47 @@ public class MyBTree implements BTree {
 
 	@Override
 	public boolean contains(Integer o) {
-		// TODO Auto-generated method stub
+		if (rootNode != null) {
+			return rootNode.contains(o);
+		}
 		return false;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
+		if (rootNode != null) {
+			return rootNode.size();
+		}
 		return 0;
 	}
 
 	@Override
 	public int height() {
-		// TODO Auto-generated method stub
+		if (rootNode != null) {
+			return rootNode.height();
+		}
 		return 0;
 	}
 
 	@Override
 	public Integer getMax() {
-		// TODO Auto-generated method stub
+		if (rootNode != null) {
+			return rootNode.getMax();
+		}
 		return null;
 	}
 
 	@Override
 	public Integer getMin() {
-		// TODO Auto-generated method stub
+		if (rootNode != null) {
+			return rootNode.getMin();
+		}
 		return null;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return rootNode == null;
 	}
 
 	@Override
