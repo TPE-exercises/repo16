@@ -5,7 +5,7 @@ public class BTreeNode {
 	private Integer[] elements;
 	private BTreeNode[] children;
 	
-	public BTreeNode(int ordinal) {
+	BTreeNode(int ordinal) {
 		// We need one element and children more that we can check if this node have to be splitted
 		elements = new Integer[2 * ordinal + 1];
 		children = new BTreeNode[2 * ordinal + 1 + 1];
@@ -25,9 +25,25 @@ public class BTreeNode {
 		
 		if(!hasChildren()) {
 			//insert the element into this node
+			int indexToInsert = bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
+			
+			if(indexToInsert == -1) {
+				//element is already in the node
+				return false;
+			} else {
+				insertIntoNode(element, indexToInsert);
+				return true;
+			}
 		}
 		
-		return false;
+		//this node is not a leaf -> search the node to insert this element
+		int indexToInsert = bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
+		
+		if(indexToInsert == -1) {
+			return false;
+		} else {
+			return children[indexToInsert].insert(element);
+		}
 	}
 	
 	int size() {
@@ -52,6 +68,25 @@ public class BTreeNode {
 	
 	boolean isEmpty() {
 		return elements[0] == null;
+	}
+	
+	Integer[] getAllElements() {
+		Integer[] allElements = new Integer[size()];
+		
+		for(int i = 0; i < elements.length; i++) {
+			if(elements[i] != null) {
+				allElements[i] = elements[i];
+			}
+		}
+		
+		//All all elements from the childrens 
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				//TODO Array Utils insert array into array
+			}
+		}
+		
+		return allElements;
 	}
 	
 	private boolean hasChildren() {
