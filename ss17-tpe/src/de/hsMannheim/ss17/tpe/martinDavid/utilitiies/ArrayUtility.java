@@ -13,7 +13,7 @@ public class ArrayUtility {
 	 *            - element to insert
 	 * @return the index of the best insert position for the `elementToInsert` or -1 if the element is already present
 	 */
-	static int bestInsertPositionToLeftByBinarySearch(Integer[] array, int endIndex, Integer elementToInsert) {
+	public static int bestInsertPositionToLeftByBinarySearch(Integer[] array, int endIndex, Integer elementToInsert) {
 		if(elementToInsert == null) {
 			return -1;
 		}

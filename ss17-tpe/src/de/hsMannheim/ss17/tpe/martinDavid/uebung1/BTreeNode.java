@@ -1,5 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
 
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
+
 public class BTreeNode {
 	
 	private Integer[] elements;
@@ -25,7 +27,7 @@ public class BTreeNode {
 		
 		if(!hasChildren()) {
 			//insert the element into this node
-			int indexToInsert = bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
+			int indexToInsert = ArrayUtility.bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
 			
 			if(indexToInsert == -1) {
 				//element is already in the node
@@ -34,10 +36,11 @@ public class BTreeNode {
 				insertIntoNode(element, indexToInsert);
 				return true;
 			}
+			
 		}
 		
 		//this node is not a leaf -> search the node to insert this element
-		int indexToInsert = bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
+		int indexToInsert = ArrayUtility.bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
 		
 		if(indexToInsert == -1) {
 			return false;
