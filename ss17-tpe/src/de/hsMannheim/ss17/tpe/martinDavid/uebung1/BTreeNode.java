@@ -1,5 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
 
+import static gdi.MakeItSimple.*;
+
 public class BTreeNode {
 	
 	private Integer[] elements;
@@ -87,6 +89,46 @@ public class BTreeNode {
 		}
 		
 		return allElements;
+	}
+	
+	void printInorder() {
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				children[i].printInorder();
+			}
+			
+			if(i < elements.length && elements[i] != null) {
+				print(elements[i] + ", ");
+			}
+		}
+	}
+	
+	void printPostorder() {		
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				children[i].printPostorder();
+			}
+		}
+		
+		for(Integer element : elements) {
+			print(element + ", ");
+		}
+	}
+	
+	void printPreorder() {
+		for(Integer element : elements) {
+			print(element + ", ");
+		}
+		
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				children[i].printPreorder();
+			}
+		}
+	}
+	
+	void printLevelOrder() {
+		
 	}
 	
 	private boolean hasChildren() {

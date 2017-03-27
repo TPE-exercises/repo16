@@ -115,26 +115,38 @@ public class MyBTree implements BTree {
 
 	@Override
 	public void printInorder() {
-		// TODO Auto-generated method stub
+		if(rootNode != null) {
+			rootNode.printInorder();
+		}
 		
+		println();
 	}
 
 	@Override
 	public void printPostorder() {
-		// TODO Auto-generated method stub
+		if(rootNode != null) {
+			rootNode.printPostorder();
+		}
 		
+		println();
 	}
 
 	@Override
 	public void printPreorder() {
-		// TODO Auto-generated method stub
+		if(rootNode != null) {
+			rootNode.printPreorder();
+		}
 		
+		println();		
 	}
 
 	@Override
 	public void printLevelorder() {
-		// TODO Auto-generated method stub
+		if(rootNode != null) {
+			rootNode.printLevelOrder();
+		}
 		
+		println();
 	}
 
 }
