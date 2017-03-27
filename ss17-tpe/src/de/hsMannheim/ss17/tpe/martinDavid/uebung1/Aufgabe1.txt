@@ -1,0 +1,3 @@
+Wir haben die reversed domain name notation gewählt, um Kolissionen mit anderen Hochschulen zu vermeiden.
+Mit jedem Package wurden wir präziser, erst Deutschland ("de"), dann die Hochschule (hsMannheim), das Semester (ss17), das Fach (tpe),
+die Studenten (martinDavid) und zu letzt die Übungsnummer. 
