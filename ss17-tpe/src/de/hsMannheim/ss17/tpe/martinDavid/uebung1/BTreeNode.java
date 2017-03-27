@@ -1,5 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
 
+import static gdi.MakeItSimple.*;
+
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 
 public class BTreeNode {
@@ -36,7 +38,6 @@ public class BTreeNode {
 				insertIntoNode(element, indexToInsert);
 				return true;
 			}
-			
 		}
 		
 		//this node is not a leaf -> search the node to insert this element
@@ -92,6 +93,46 @@ public class BTreeNode {
 		return allElements;
 	}
 	
+	void printInorder() {
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				children[i].printInorder();
+			}
+			
+			if(i < elements.length && elements[i] != null) {
+				print(elements[i] + ", ");
+			}
+		}
+	}
+	
+	void printPostorder() {		
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				children[i].printPostorder();
+			}
+		}
+		
+		for(Integer element : elements) {
+			print(element + ", ");
+		}
+	}
+	
+	void printPreorder() {
+		for(Integer element : elements) {
+			print(element + ", ");
+		}
+		
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				children[i].printPreorder();
+			}
+		}
+	}
+	
+	void printLevelOrder() {
+		
+	}
+	
 	private boolean hasChildren() {
 		return children[0] != null;
 	}
@@ -117,5 +158,45 @@ public class BTreeNode {
 		}
 		
 		elements[position] = element;
+	}
+	
+	/**
+	 * finds the best insert position for an element in an ascending ordered
+	 * subrange from 0 to `endIndex`
+	 * 
+	 * @param array
+	 *            - array to find the inserting position
+	 * @param endIndex
+	 *            - last index of the ascending ordered subrange
+	 * @param elementToInsert
+	 *            - element to insert
+	 * @return the index of the best insert position for the `elementToInsert`
+	 */
+	private static int bestInsertPositionToLeftByBinarySearch(Integer[] array, int endIndex, Integer elementToInsert) {
+
+		int startIndex = 0;
+
+		while (startIndex < endIndex) {
+			int distanceBetweenStartAndEndIndex = endIndex - startIndex;
+			int middleIndex = startIndex + (distanceBetweenStartAndEndIndex / 2);
+
+			int middleElement = array[middleIndex];
+
+			int rightIndex = middleIndex + 1;
+
+			int rightElement = array[rightIndex];
+
+			boolean isBestInsertPosition = middleElement <= elementToInsert && 
+											rightElement >= elementToInsert;
+
+			if (isBestInsertPosition) {
+				return rightIndex;
+			} else if (middleElement > elementToInsert) {
+				endIndex = middleIndex;
+			} else {
+				startIndex = middleIndex;
+			}
+		}
+		return endIndex;
 	}
 }
