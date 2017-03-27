@@ -60,6 +60,12 @@ public interface BTree {
 	 */
 	boolean addAll(BTree otherTree);
 	
+	/**
+	 * Returns all elements without a specific order
+	 * @return all elements
+	 */
+	Integer[] getAllElements();
+	
 	void printInorder();
 	void printPostorder();
 	void printPreorder();

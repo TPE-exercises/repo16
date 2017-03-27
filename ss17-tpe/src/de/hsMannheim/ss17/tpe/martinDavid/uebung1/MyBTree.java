@@ -1,5 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
 
+import static gdi.MakeItSimple.*;
+
 public class MyBTree implements BTree {
 	private int ordinal;
 	private BTreeNode rootNode;
@@ -9,21 +11,37 @@ public class MyBTree implements BTree {
 	}
 	
 	@Override
-	public boolean insert(Integer o) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insert(Integer element) {		
+		if(rootNode == null) {
+			rootNode = new BTreeNode(ordinal);
+		}
+		
+		return rootNode.insert(element);
 	}
 
 	@Override
 	public boolean insert(String filename) {
-		// TODO Auto-generated method stub
-		return false;
+		Object file;
+		
+		try {
+			file = openInputFile(filename);
+			
+			while(!isEndOfInputFile(file)) {
+				int elementToInsert = readInt(file);
+				insert(elementToInsert);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override
-	public boolean contains(Integer o) {
+	public boolean contains(Integer element) {
 		if (rootNode != null) {
-			return rootNode.contains(o);
+			return rootNode.contains(element);
 		}
 		return false;
 	}
@@ -62,13 +80,37 @@ public class MyBTree implements BTree {
 
 	@Override
 	public boolean isEmpty() {
-		return rootNode == null;
+		if(rootNode == null) {
+			return true;
+		} else {
+			return rootNode.isEmpty();
+		}
+	}
+	
+	@Override
+	public Integer[] getAllElements() {
+		if(rootNode != null) {
+			return rootNode.getAllElements();
+		}
+		
+		return new Integer[0];
 	}
 
 	@Override
 	public boolean addAll(BTree otherTree) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean allInsertionsSuccessfull = true;
+		
+		if(otherTree != null) {
+			for(int elementToInsert : otherTree.getAllElements()) {
+				if(!insert(elementToInsert)) {
+					//could not insert this element
+					allInsertionsSuccessfull = false;
+				}
+			}
+		} 
+		
+		return  allInsertionsSuccessfull;
 	}
 
 	@Override

@@ -70,6 +70,25 @@ public class BTreeNode {
 		return elements[0] == null;
 	}
 	
+	Integer[] getAllElements() {
+		Integer[] allElements = new Integer[size()];
+		
+		for(int i = 0; i < elements.length; i++) {
+			if(elements[i] != null) {
+				allElements[i] = elements[i];
+			}
+		}
+		
+		//All all elements from the childrens 
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				//TODO Array Utils insert array into array
+			}
+		}
+		
+		return allElements;
+	}
+	
 	private boolean hasChildren() {
 		return children[0] != null;
 	}
