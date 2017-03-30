@@ -53,4 +53,15 @@ public class ArrayUtility {
 		}
 		return endIndex;
 	}
+	
+	/**
+	 * Inserts all elements from one array into an other array. The arrays have to be filled from left to right with elements.
+	 * @param originalArray
+	 * @param toInsert
+	 * @return
+	 */
+	public static boolean insertArrayIntoArray(Integer[] originalArray, Integer[] toInsert) {
+		//TODO
+		return false;
+	}
 }
