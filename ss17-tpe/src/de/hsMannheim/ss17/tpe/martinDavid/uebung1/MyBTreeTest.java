@@ -6,15 +6,27 @@ import org.junit.Test;
 
 public class MyBTreeTest {
 
+	@Test 
+	public void insertFromFileTest() {
+		String directory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung1/";
+		String filename = "integers.txt";
+		String filepath = directory + filename;
+		MyBTree tree = new MyBTree(1);
+		tree.insert(filepath);
+		assertEquals("size shoudl be equal", 12, tree.size());
+		System.out.println(tree.size());
+		tree.printInorder();
+	}
 	@Test
 	public void insertTest() {
-		Integer[] elements = {5, 1, 9};
+		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30} ;
 		MyBTree tree = new MyBTree(1);
 		for(Integer element: elements) {
 			boolean didInsertElement = tree.insert(element);
 			assertTrue("should insert element " + element.toString(), didInsertElement);
 			boolean treeContainsElement = tree.contains(element);
 			assertTrue("should contain element " + element.toString(), treeContainsElement);
+			tree.printInorder();
 		}
 		assertEquals(elements.length, tree.size());
 	}
