@@ -11,14 +11,6 @@ public class BTreeNode {
 	private BTreeNode[] children;
 	private BTreeNode parent;
 	
-	public static void main(String[] args) {
-		Integer[] elements = {5, 1, 9};
-		MyBTree tree = new MyBTree(1);
-		for(Integer element: elements) {
-			boolean didInsertElement = tree.insert(element);
-		}
-	}
-	
 	BTreeNode(int ordinal) {
 		this.ordinal = ordinal;
 		// We need one element and children more that we can check if this node have to be splitted
