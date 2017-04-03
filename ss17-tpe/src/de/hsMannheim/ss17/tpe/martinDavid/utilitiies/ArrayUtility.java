@@ -139,4 +139,32 @@ public class ArrayUtility {
 			return false;
 		}
 	}
+	/**
+	 * searches for the smallest element in the array and returns it
+	 * @param array 
+	 * @return smallest element
+	 */
+	public static Integer min(Integer[] array) {
+        Integer min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
+    }
+	/**
+	 * searches for the biggest element in the array and returns it
+	 * @param array 
+	 * @return biggest element
+	 */
+	public static Integer max(Integer[] array) {
+        Integer max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+            	max = array[i];
+            }
+        }
+        return max;
+    }
 }
