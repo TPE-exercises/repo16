@@ -18,6 +18,19 @@ public class MyBTree implements BTree {
 		
 		return rootNode.insert(element);
 	}
+	/**
+	 * inserts all elements to the tree
+	 * @param elements
+	 * @return
+	 */
+	public boolean insertAll(Integer[] elements) {
+		for(Integer element: elements) {
+			if(!insert(element)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	@Override
 	public boolean insert(String filename) {
