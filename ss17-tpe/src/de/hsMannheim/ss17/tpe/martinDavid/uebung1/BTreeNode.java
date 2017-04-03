@@ -139,7 +139,7 @@ public class BTreeNode {
 			}
 		} else {
 			//get the last element
-			for(int i = elements.length; i >= 0; i--) {
+			for(int i = elements.length - 1; i >= 0; i--) {
 				if(elements[i] != null) {
 					return elements[i];
 				}

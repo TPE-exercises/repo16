@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
+
 public class MyBTreeTest {
 
 	@Test 
@@ -53,7 +55,7 @@ public class MyBTreeTest {
 	}
 	@Test
 	public void sizeTest() {
-		Integer[] elements = {5, 1, 9};
+		Integer[] elements = {5, 1, 9, 4, 0, 99};
 		MyBTree tree = new MyBTree(1);
 		assertTrue("should insert all elements", tree.insertAll(elements));
 		assertEquals("should have the correct size", elements.length, tree.size());
@@ -64,6 +66,24 @@ public class MyBTreeTest {
 		MyBTree tree = new MyBTree(1);
 		assertTrue("should insert all elements", tree.insertAll(elements));
 		assertEquals("should have the correct height", 1, tree.height());
+		Integer[] elements2 = {5, 1, 3, 4, 0, 6};
+		MyBTree tree2 = new MyBTree(1);
+		assertTrue("should insert all elements", tree2.insertAll(elements2));
+		assertEquals("should have the correct height", 2, tree2.height());
+	}
+	
+	@Test
+	public void minMaxTest() {
+		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1};
+		Integer expectedMin = ArrayUtility.min(elements);
+		Integer expectedMax = ArrayUtility.max(elements);
+		MyBTree tree = new MyBTree(1);
+		tree.insertAll(elements);
+		Integer actualMin = tree.getMin();
+		Integer actualMax = tree.getMax();
+		assertEquals(expectedMin, actualMin);
+		assertEquals(expectedMax, actualMax);
+		
 	}
 
 }
