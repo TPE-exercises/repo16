@@ -223,7 +223,7 @@ public class BTreeNode {
 		//All all elements from the childrens 
 		for(int i = 0; i < children.length; i++) {
 			if(children[i] != null) {
-				//TODO Array Utils insert array into array
+				ArrayUtility.insertArrayIntoArray(allElements, children[i].getAllElements());
 			}
 		}
 		
