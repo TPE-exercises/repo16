@@ -51,6 +51,33 @@ public class MyBTreeTest {
 		}
 		assertEquals(elements.length - 1, tree.size());
 	}
+	
+	 @Test
+	 public void addAllTest() {
+		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30};
+		MyBTree tree = new MyBTree(1);
+		for(Integer element: elements) {
+			tree.insert(element);
+		}
+			
+		Integer[] elementsOtherTree = {2, 3, 99, -1};
+		MyBTree otherTree = new MyBTree(1);
+		for(Integer element : elementsOtherTree) {
+			otherTree.insert(element);
+		}
+		
+		boolean didInsertAllElements = tree.addAll(otherTree);
+		assertTrue("should insert all elements", didInsertAllElements);
+		
+		assertEquals(tree.size(), elements.length + elementsOtherTree.length);
+		
+		didInsertAllElements = tree.addAll(otherTree);
+		assertFalse("should not insert all elements", didInsertAllElements);
+		
+		assertEquals(tree.size(), elements.length + elementsOtherTree.length);
+			
+	 }
+	
 	@Test
 	public void containTest() {
 		Integer[] elements = {5, 1, 9};
@@ -111,6 +138,22 @@ public class MyBTreeTest {
 		for(int ordinal: ordinals) {
 			testEverthing(elements, ordinal);
 		}
+	}
+	
+	@Test
+	public void deepCloneTest() {
+		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1};
+		BTree tree = new MyBTree(2);
+		for(Integer element: elements) {
+			tree.insert(element);
+		}
+		
+		BTree clonedTree = tree.clone();
+		
+		tree.insert(100);
+		tree.insert(101);
+		tree.insert(102);
+		assertEquals(clonedTree.size(), tree.size() - 3);
 	}
 	
 	private void testEverthing(Integer[] elements, int ordinal) {
