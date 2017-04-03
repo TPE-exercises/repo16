@@ -169,7 +169,12 @@ public class MyBTree implements BTree {
 	@Override
 	public void printLevelorder() {
 		if(rootNode != null) {
-			rootNode.printLevelOrder();
+			int height = rootNode.height();
+			for(int i = 0; i < height; i++) {
+				rootNode.printLevel(i);
+				
+				System.out.println("");
+			}
 		}
 		
 		println();

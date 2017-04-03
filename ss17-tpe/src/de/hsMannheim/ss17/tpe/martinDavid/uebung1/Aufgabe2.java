@@ -41,5 +41,24 @@ public class Aufgabe2 {
 	private static MyBTree getWorkingTree() {
 		return trees[workingTreeIndex];
 	}
+	
+	private void printMenu() {
+		println("**************************");
+		println("0) change working tree");
+		println("1) insert( Integer )");
+		println("2) insert( File-path )");
+		println("3) contains");
+		println("4) size");
+		println("5) height");
+		println("6) getMax");
+		println("7) getMin");
+		println("8) isEmpty");
+		println("9) addAll");
+		println("10) clone");
+		println("11) printInOrder");
+		println("12) printPostOrder");
+		println("13) printPreOrder");
+		println("14) printLevelOrder");
+	}
 
 }
