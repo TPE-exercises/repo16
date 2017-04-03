@@ -63,7 +63,6 @@ public class BTreeNode {
 	}
 	
 	boolean insert(Integer element, BTreeNode leftSubtree, BTreeNode rightSubtree) {
-		//TODO: update leftSubtree parent and rightSubtree parent
 		int indexToInsert = ArrayUtility.bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
 		if(indexToInsert == -1) {
 			return false;
