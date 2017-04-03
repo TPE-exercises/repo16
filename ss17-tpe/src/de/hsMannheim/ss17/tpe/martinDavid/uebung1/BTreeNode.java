@@ -77,8 +77,47 @@ public class BTreeNode {
 	Integer getMax() {
 		return new Integer(0);
 	}
-	
+	/**
+	 * Checks if the tree contains an object
+	 * @param object 
+	 * @return true when the object is already in the tree and false if not
+	 */
 	boolean contains(Integer o) {
+		return linearContains(o);
+	}
+	/**
+	 * Checks if the tree contains an object with the linear search algorithm
+	 * @param object 
+	 * @return true when the object is already in the tree and false if not
+	 */
+	private boolean linearContains(Integer o) {
+		for(int index = 0; index < elements.length; index++) {
+			Integer element = elements[index];
+			
+			if (element == null || o < element) {
+				//continue search in the child node at the same index
+				return linearContainsInChildNode(index, element);
+			}
+			else if (element.equals(o)) {
+				return true;
+			}
+			//else
+			//continue search at the next element
+		}
+		//should never be called because the last element should always be null
+		assert(false);
+		return false;
+	}
+	/**
+	 * Checks if the subtree contains an object with the linear search algorithm
+	 * @param object 
+	 * @return true when the object is already in the subtree and false if not
+	 */
+	private boolean linearContainsInChildNode(int index, Integer element) {
+		BTreeNode childNode = children[index];
+		if (childNode != null) {
+			return childNode.linearContains(element);
+		}
 		return false;
 	}
 	
