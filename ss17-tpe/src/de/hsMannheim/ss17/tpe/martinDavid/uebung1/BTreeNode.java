@@ -63,8 +63,7 @@ public class BTreeNode {
 	 */
 	int size() {
 		int size = ArrayUtility.nonNullElementCount(elements);
-		for(int index = 0; index < children.length; index++) {
-			BTreeNode childNode = children[index];
+		for(BTreeNode childNode: children) {
 			if (childNode == null) {
 				break;
 			}
@@ -78,8 +77,7 @@ public class BTreeNode {
 	 */
 	int height() {
 		int maxHeight = 0;
-		for(int index = 0; index < children.length; index++) {
-			BTreeNode childNode = children[index];
+		for(BTreeNode childNode: children) {
 			if (childNode == null) {
 				break;
 			}
