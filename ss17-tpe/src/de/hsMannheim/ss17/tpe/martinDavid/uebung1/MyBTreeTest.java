@@ -41,7 +41,7 @@ public class MyBTreeTest {
 	}
 	@Test
 	public void sizeTest() {
-		Integer[] elements = {5, 1};
+		Integer[] elements = {5, 1, 9};
 		MyBTree tree = new MyBTree(1);
 		assertTrue("should insert all elements", tree.insertAll(elements));
 		assertEquals("should have the correct size", elements.length, tree.size());

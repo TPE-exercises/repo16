@@ -139,7 +139,7 @@ public class BTreeNode {
 			
 			if (element == null || o < element) {
 				//continue search in the child node at the same index
-				return linearContainsInChildNode(index, element);
+				return linearContainsInChildNode(index, o);
 			}
 			else if (element.equals(o)) {
 				return true;
