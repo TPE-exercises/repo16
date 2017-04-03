@@ -47,6 +47,7 @@ public class BTreeNode {
 				return false;
 			} else {
 				insertIntoNode(element, indexToInsert);
+				burstIfNeeded();
 				return true;
 			}
 		}
