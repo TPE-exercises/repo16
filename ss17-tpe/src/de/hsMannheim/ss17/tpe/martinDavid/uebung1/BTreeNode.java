@@ -218,7 +218,10 @@ public class BTreeNode {
 	 * @param index
 	 */
 	private void removeElementsAndChildrenFromIndex(int index) {
-		
+		for(int i = index; i < elements.length; i++) {
+			elements[i] = null;
+			children[i + 1] = null;
+		}
 	}
 	/**
 	 * copies all elements and children from a given start index (inclusive) to a given end index (inclusive)
@@ -226,7 +229,19 @@ public class BTreeNode {
 	 * @param endIndex
 	 */
 	private BTreeNode cloneFromStartIndexToEndIndex(int startIndex, int endIndex) {
-		return new BTreeNode(ordinal);
+		BTreeNode treeNode = new BTreeNode(ordinal);
+		
+		//copy the elements
+		for(int i = startIndex; i <= endIndex; i++) {
+			treeNode.insert(elements[i]);
+		}
+		
+		//copy the childs
+		for(int i = startIndex + 1; i <= endIndex + 1; i++) {
+			treeNode.children[i - startIndex] = children[i];
+		}
+		
+		return treeNode;
 	}
 	
 	/**
