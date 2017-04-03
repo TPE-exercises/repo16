@@ -114,11 +114,34 @@ public class BTreeNode {
 	}
 	
 	Integer getMin() {
-		return new Integer(0);
+		if(children[0] != null) {
+			return children[0].getMin();
+		} else {
+			if(elements[0] != null)
+				return elements[0];
+			else 
+				return null;
+		}
 	}
 	
 	Integer getMax() {
-		return new Integer(0);
+		if(hasChildren()) {
+			//get the last children
+			for(int i = children.length - 1; i >= 0; i--) {
+				if(children[i] != null) {
+					return children[i].getMax();
+				}
+			}
+		} else {
+			//get the last element
+			for(int i = elements.length; i >= 0; i--) {
+				if(elements[i] != null) {
+					return elements[i];
+				}
+			}
+		}
+		
+		return null;
 	}
 	/**
 	 * Checks if the tree contains an object
@@ -168,6 +191,26 @@ public class BTreeNode {
 		return elements[0] == null;
 	}
 	
+	BTreeNode deepClone() {
+		BTreeNode newNode = new BTreeNode(ordinal);
+		
+		//Clone elements
+		for(int i = 0; i< elements.length; i++) {
+			if(elements[i] != null) {
+				newNode.elements[i] = elements[i];
+			}
+		}
+		
+		//clone children
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				newNode.children[i] = children[i].deepClone();
+			}
+		}
+		
+		return newNode;
+	}
+	
 	Integer[] getAllElements() {
 		Integer[] allElements = new Integer[size()];
 		
@@ -180,7 +223,7 @@ public class BTreeNode {
 		//All all elements from the childrens 
 		for(int i = 0; i < children.length; i++) {
 			if(children[i] != null) {
-				//TODO Array Utils insert array into array
+				ArrayUtility.insertArrayIntoArray(allElements, children[i].getAllElements());
 			}
 		}
 		

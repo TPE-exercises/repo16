@@ -110,13 +110,33 @@ public class ArrayUtility {
 	
 	
 	/**
-	 * Inserts all elements from one array into an other array. The arrays have to be filled from left to right with elements.
+	 * Inserts all elements from one array into an other array. The arrays have to be filled from left to right with elements (the other
+	 * elements are null).
 	 * @param originalArray
 	 * @param toInsert
-	 * @return
+	 * @return true if the insertion was succesful and false if not
 	 */
 	public static boolean insertArrayIntoArray(Integer[] originalArray, Integer[] toInsert) {
-		//TODO
-		return false;
+		int indexCounterToInsert = 0;
+		
+		for(int i = 0; i < originalArray.length; i++) {
+			if(originalArray[i] == null) {
+				
+				if(indexCounterToInsert < toInsert.length) {
+					originalArray[i] = toInsert[indexCounterToInsert];
+					indexCounterToInsert++;
+				} else {
+					return true;
+				}
+				
+			}
+		}
+		
+		//Check if all elemetns from toInsert where inserted
+		if(indexCounterToInsert == toInsert.length) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
