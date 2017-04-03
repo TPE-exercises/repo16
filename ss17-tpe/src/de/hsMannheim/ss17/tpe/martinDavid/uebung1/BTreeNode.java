@@ -68,7 +68,12 @@ public class BTreeNode {
 		if(indexToInsert == -1) {
 			return false;
 		}
+		Integer previousElement = elements[indexToInsert];
+		if (previousElement != null) {
+			rightShiftElementsAndChildren(indexToInsert);
+		}
 		elements[indexToInsert] = element;
+		
 		
 		int leftChildNodeIndex = indexToInsert;
 		int rightChildNodeIndex = indexToInsert + 1;
@@ -299,7 +304,12 @@ public class BTreeNode {
 		
 		//copy the childs
 		for(int i = startIndex; i <= endIndex + 1; i++) {
-			treeNode.children[i - startIndex] = children[i];
+			BTreeNode child = children[i];
+			if (child == null) {
+				break;
+			}
+			child.parent = treeNode;
+			treeNode.children[i - startIndex] = child;
 		}
 		
 		return treeNode;
@@ -346,6 +356,16 @@ public class BTreeNode {
 		}
 		
 		elements[position] = element;
+	}
+	/**
+	 * moves all elements and children one position to the right starting at the given index (inclusive)
+	 * @param startIndex right shift start index
+	 */
+	private void rightShiftElementsAndChildren(int startIndex) {
+		for(int index = elements.length - 1; index > startIndex; index--) {
+			elements[index] = elements[index - 1];
+			children[index + 1] = children[index];
+		}
 	}
 
 	public BTreeNode getParent() {

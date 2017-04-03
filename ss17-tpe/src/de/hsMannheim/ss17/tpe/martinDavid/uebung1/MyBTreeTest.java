@@ -19,7 +19,7 @@ public class MyBTreeTest {
 	}
 	@Test
 	public void insertTest() {
-		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30} ;
+		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1};
 		MyBTree tree = new MyBTree(1);
 		for(Integer element: elements) {
 			boolean didInsertElement = tree.insert(element);
