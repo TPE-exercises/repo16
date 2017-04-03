@@ -279,9 +279,9 @@ public class BTreeNode {
 			currentParent = new BTreeNode(ordinal);
 		}
 		
-		BTreeNode leftSubtree = cloneFromStartIndexToEndIndex(middleIndex + 1, elements.length - 1);
+		BTreeNode rightSubtree = cloneFromStartIndexToEndIndex(middleIndex + 1, elements.length - 1);
 		removeElementsAndChildrenFromIndex(middleIndex);
-		BTreeNode rightSubtree = this;
+		BTreeNode leftSubtree = this;
 		currentParent.insert(middleElement, leftSubtree, rightSubtree);
 	}
 	

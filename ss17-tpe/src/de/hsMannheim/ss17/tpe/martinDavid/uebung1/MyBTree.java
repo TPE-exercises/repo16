@@ -16,7 +16,12 @@ public class MyBTree implements BTree {
 			rootNode = new BTreeNode(ordinal);
 		}
 		
-		return rootNode.insert(element);
+		
+		boolean successful = rootNode.insert(element);
+		if(rootNode.getParent() != null) {
+			rootNode = rootNode.getParent();
+		}
+		return successful;
 	}
 	/**
 	 * inserts all elements to the tree
