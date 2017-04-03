@@ -19,7 +19,7 @@ public class Aufgabe2 {
 	
 	private static void inputLoop() {
 		
-		
+		printMenu();
 		
 		int userActionID = readInt();
 		
@@ -33,6 +33,42 @@ public class Aufgabe2 {
 			}
 			workingTreeIndex = newWorkingTreeIndex;
 			println("Successful changed working tree to index: " + workingTreeIndex);
+		case 1:
+			println("Enter an Integer to insert into the tree:");
+			int integerToInsert = readInt();
+			if(getWorkingTree().insert(integerToInsert)) {
+				println("Suecessful inserted Integer(" + integerToInsert + ")");
+			} else {
+				println("Failed to insert Integer(" + integerToInsert + ")");
+			}
+			break;
+		case 2:
+			println("Enter an Filepath:");
+			String filepath = readLine();
+			if(getWorkingTree().insert(filepath)) {
+				println("Suecessful inserted file at path: " + filepath );
+			} else {
+				println("failed to insert file at path: " + filepath );
+			}
+			break;
+		case 3:
+			println("Enter an Integer to look up:");
+			int integerToSearch = readInt();
+			if(getWorkingTree().contains(integerToSearch)) {
+				println("Tree does contain Integer(" + integerToSearch + ")");
+			} else {
+				println("Tree does not contain Integer(" + integerToSearch + ")");
+			}
+			break;
+		case 4:
+			println("The trees size is  " + getWorkingTree().size());
+			break;
+		case 5:
+			println("The trees height is " + getWorkingTree().height());
+			break;
+		case 6:
+			println("The maximum element of the tree is: " + getWorkingTree().getMax());
+			break;
 		case 7:
 			println("Min: " + trees[workingTreeIndex].getMin());
 			break;
@@ -73,6 +109,7 @@ public class Aufgabe2 {
 		case 14:
 			trees[workingTreeIndex].printLevelorder();
 			break;
+			break;
 		default:
 			println("Action with ID(" + userActionID + ") does not exists");
 		}
@@ -82,7 +119,7 @@ public class Aufgabe2 {
 		return trees[workingTreeIndex];
 	}
 	
-	private void printMenu() {
+	private static void printMenu() {
 		println("**************************");
 		println("0) change working tree");
 		println("1) insert( Integer )");
