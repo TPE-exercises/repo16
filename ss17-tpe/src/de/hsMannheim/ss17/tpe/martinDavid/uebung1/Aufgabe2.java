@@ -19,6 +19,23 @@ public class Aufgabe2 {
 	
 	private static void inputLoop() {
 		
+		
+		
+		int userActionID = readInt();
+		
+		switch (userActionID) {
+		case 0:
+			println("Enter a number between 0 and " + (treeCount - 1) + ":");
+			int newWorkingTreeIndex = readInt();
+			if (newWorkingTreeIndex < 0 || newWorkingTreeIndex >= trees.length) {
+				println("Tree with index " + newWorkingTreeIndex + " does not exists");
+				break;
+			}
+			workingTreeIndex = newWorkingTreeIndex;
+			println("Successful changed working tree to index: " + workingTreeIndex);
+		default:
+			println("Action with ID(" + userActionID + ") does not exists");
+		}
 	}
 	
 	private static MyBTree getWorkingTree() {
