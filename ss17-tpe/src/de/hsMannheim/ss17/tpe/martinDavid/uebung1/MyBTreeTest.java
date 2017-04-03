@@ -28,7 +28,6 @@ public class MyBTreeTest {
 			assertTrue("should insert element " + element.toString(), didInsertElement);
 			boolean treeContainsElement = tree.contains(element);
 			assertTrue("should contain element " + element.toString(), treeContainsElement);
-			tree.printInorder();
 		}
 		assertEquals(elements.length, tree.size());
 	}
@@ -83,7 +82,48 @@ public class MyBTreeTest {
 		Integer actualMax = tree.getMax();
 		assertEquals(expectedMin, actualMin);
 		assertEquals(expectedMax, actualMax);
-		
 	}
+	
+	@Test
+	public void testEverthingWithDifferentOrdinals() {
+		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1, 21, 11, 17, -2, -4, -5, -9, -20, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 200, -200, 210, 211, 212, 213, 214};
+		int[] ordinals = {1,2,3,4,5,6, 10, 20};
+		for(int ordinal: ordinals) {
+			testEverthing(elements, ordinal);
+		}
+	}
+	
+	private void testEverthing(Integer[] elements, int ordinal) {
+		MyBTree tree = new MyBTree(ordinal);
+		for(Integer element: elements) {
+			boolean didInsertElement = tree.insert(element);
+			assertTrue("should insert element " + element.toString(), didInsertElement);
+			boolean treeContainsElement = tree.contains(element);
+			assertTrue("should contain element " + element.toString(), treeContainsElement);
+		}
+		
+		assertEquals("should have the correct size", elements.length, tree.size());
+		
+		for(Integer element: elements) {
+			boolean treeContainsElement = tree.contains(element);
+			assertTrue("should contain element " + element.toString(), treeContainsElement);
+		}
+		
+		for(Integer element: elements) {
+			boolean didInsertElement = tree.insert(element);
+			assertFalse("should not insert element " + element.toString() + " again", didInsertElement);
+			boolean treeContainsElement = tree.contains(element);
+			assertTrue("should still contain element " + element.toString(), treeContainsElement);
+		}
+		
+		Integer expectedMin = ArrayUtility.min(elements);
+		Integer expectedMax = ArrayUtility.max(elements);
+		Integer actualMin = tree.getMin();
+		Integer actualMax = tree.getMax();
+		assertEquals(expectedMin, actualMin);
+		assertEquals(expectedMax, actualMax);
+	}
+	
+	
 
 }
