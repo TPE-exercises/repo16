@@ -298,7 +298,7 @@ public class BTreeNode {
 		}
 		
 		//copy the childs
-		for(int i = startIndex + 1; i <= endIndex + 1; i++) {
+		for(int i = startIndex; i <= endIndex + 1; i++) {
 			treeNode.children[i - startIndex] = children[i];
 		}
 		
