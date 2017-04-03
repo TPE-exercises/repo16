@@ -237,26 +237,28 @@ public class BTreeNode {
 			}
 			
 			if(i < elements.length && elements[i] != null) {
-				print(elements[i] + ", ");
+				print(elements[i] + " ");
 			}
 		}
 	}
 	
 	void printPostorder() {		
 		for(int i = 0; i < children.length; i++) {
-			if(children[i] != null) {
+			if(children[i] != null) {				
 				children[i].printPostorder();
 			}
 		}
 		
-		for(Integer element : elements) {
-			print(element + ", ");
+		for(Integer element : elements) {	
+			if(element != null)
+				print(element + " ");
 		}
 	}
 	
 	void printPreorder() {
-		for(Integer element : elements) {
-			print(element + ", ");
+		for(Integer element : elements) {	
+			if(element != null)
+				print(element + " ");
 		}
 		
 		for(int i = 0; i < children.length; i++) {
@@ -266,8 +268,25 @@ public class BTreeNode {
 		}
 	}
 	
-	void printLevelOrder() {
-		
+	void printLevel(int level) {
+		if(level == 0) {
+			for(Integer element : elements) {
+				if(element != null) {					
+					print(element + " ");
+				}
+			}
+		} else {
+			for(int i = 0; i < children.length; i++) {
+				if(children[i] != null) {
+					
+					if(i != 0) { //if the child is not the first child
+						print(" | ");
+					}
+						
+					children[i].printLevel(level - 1);
+				}
+			}
+		}
 	}
 	
 	private boolean hasChildren() {
