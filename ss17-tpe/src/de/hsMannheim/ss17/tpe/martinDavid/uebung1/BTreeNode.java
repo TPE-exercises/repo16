@@ -63,7 +63,24 @@ public class BTreeNode {
 	
 	boolean insert(Integer element, BTreeNode leftSubtree, BTreeNode rightSubtree) {
 		//TODO: update leftSubtree parent and rightSubtree parent
-		return false;
+		int indexToInsert = ArrayUtility.bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
+		if(indexToInsert == -1) {
+			return false;
+		}
+		elements[indexToInsert] = element;
+		
+		int leftChildNodeIndex = indexToInsert;
+		int rightChildNodeIndex = indexToInsert + 1;
+		
+		children[leftChildNodeIndex] = leftSubtree;
+		leftSubtree.parent = this;
+		
+		children[rightChildNodeIndex] = rightSubtree;
+		rightSubtree.parent = this;
+		
+		burstIfNeeded();
+		
+		return true;
 	}
 	/**
 	 * Count of all objects in this node and all of its children summed
@@ -238,7 +255,18 @@ public class BTreeNode {
 	}
 	
 	private void burst() {
+		int middleIndex = elements.length/2;
+		int middleElement = elements[middleIndex];
 		
+		BTreeNode currentParent = parent;
+		if (currentParent == null) {
+			currentParent = new BTreeNode(ordinal);
+		}
+		
+		BTreeNode leftSubtree = cloneFromStartIndexToEndIndex(middleIndex + 1, elements.length - 1);
+		removeElementsAndChildrenFromIndex(middleIndex);
+		BTreeNode rightSubtree = this;
+		currentParent.insert(middleElement, leftSubtree, rightSubtree);
 	}
 	
 	private void burstIfNeeded() {
