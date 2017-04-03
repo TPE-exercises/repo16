@@ -13,8 +13,9 @@ public class Aufgabe2 {
 		for(int i = 0; i < trees.length; i++) {
 			trees[i] = new MyBTree(ordinal);
 		}
-		
-		inputLoop();
+		while(true) {
+			inputLoop();
+		}
 	}
 	
 	private static void inputLoop() {
@@ -33,6 +34,7 @@ public class Aufgabe2 {
 			}
 			workingTreeIndex = newWorkingTreeIndex;
 			println("Successful changed working tree to index: " + workingTreeIndex);
+			break;
 		case 1:
 			println("Enter an Integer to insert into the tree:");
 			int integerToInsert = readInt();
@@ -108,7 +110,6 @@ public class Aufgabe2 {
 			break;
 		case 14:
 			trees[workingTreeIndex].printLevelorder();
-			break;
 			break;
 		default:
 			println("Action with ID(" + userActionID + ") does not exists");
