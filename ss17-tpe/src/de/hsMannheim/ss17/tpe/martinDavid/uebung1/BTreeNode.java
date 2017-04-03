@@ -104,7 +104,7 @@ public class BTreeNode {
 			//else
 			//continue search at the next element
 		}
-		//should never be called because the last element should always be null
+		//should never be reached because the last element should always be null
 		assert(false);
 		return false;
 	}

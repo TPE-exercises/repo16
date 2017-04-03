@@ -32,6 +32,12 @@ public class MyBTreeTest {
 			boolean treeContainsElement = tree.contains(element);
 			assertTrue("should contain element " + element.toString(), treeContainsElement);
 		}
+		
+		Integer[] elementsNotInTree = {4, 0, 10};
+		for(Integer element: elementsNotInTree) {
+			boolean treeContainsElement = tree.contains(element);
+			assertFalse("should not contain element " + element.toString(), treeContainsElement);
+		}
 	}
 
 }
