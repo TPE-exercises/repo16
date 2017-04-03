@@ -1,5 +1,5 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
-import static gdi.MakeItSimple.;
+import static gdi.MakeItSimple.*;
 
 public class Aufgabe2 {
 	private static final int ordinal = 1;
