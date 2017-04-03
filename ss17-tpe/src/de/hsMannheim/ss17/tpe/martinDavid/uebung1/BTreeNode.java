@@ -62,12 +62,31 @@ public class BTreeNode {
 	 * @return count of all objects in the tree
 	 */
 	int size() {
-		//TODO: add size of children recursively
-		return ArrayUtility.nonNullElementCount(elements);
+		int size = ArrayUtility.nonNullElementCount(elements);
+		for(int index = 0; index < children.length; index++) {
+			BTreeNode childNode = children[index];
+			if (childNode == null) {
+				break;
+			}
+			size += childNode.size();
+		}
+		return size;
 	}
-	
+	/**
+	 * Calculates the height of the tree. No element is height 0 and only root element is height 1
+	 * @return the height of the tree
+	 */
 	int height() {
-		return 0;
+		int maxHeight = 0;
+		for(int index = 0; index < children.length; index++) {
+			BTreeNode childNode = children[index];
+			if (childNode == null) {
+				break;
+			}
+			int childNodeHeight = childNode.height();
+			maxHeight = Math.max(maxHeight, childNodeHeight);
+		}
+		return maxHeight + 1;
 	}
 	
 	Integer getMin() {

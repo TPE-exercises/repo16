@@ -39,5 +39,19 @@ public class MyBTreeTest {
 			assertFalse("should not contain element " + element.toString(), treeContainsElement);
 		}
 	}
+	@Test
+	public void sizeTest() {
+		Integer[] elements = {5, 1};
+		MyBTree tree = new MyBTree(1);
+		assertTrue("should insert all elements", tree.insertAll(elements));
+		assertEquals("should have the correct size", elements.length, tree.size());
+	}
+	@Test
+	public void heightTest() {
+		Integer[] elements = {5, 1};
+		MyBTree tree = new MyBTree(1);
+		assertTrue("should insert all elements", tree.insertAll(elements));
+		assertEquals("should have the correct height", 1, tree.height());
+	}
 
 }
