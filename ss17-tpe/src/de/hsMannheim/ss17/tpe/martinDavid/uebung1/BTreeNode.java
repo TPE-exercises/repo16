@@ -6,8 +6,10 @@ import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 
 public class BTreeNode {
 	
+	private int ordinal;
 	private Integer[] elements;
 	private BTreeNode[] children;
+	private BTreeNode parent;
 	
 	public static void main(String[] args) {
 		Integer[] elements = {5, 1, 9};
@@ -18,6 +20,7 @@ public class BTreeNode {
 	}
 	
 	BTreeNode(int ordinal) {
+		this.ordinal = ordinal;
 		// We need one element and children more that we can check if this node have to be splitted
 		elements = new Integer[2 * ordinal + 1];
 		children = new BTreeNode[2 * ordinal + 1 + 1];
@@ -56,6 +59,11 @@ public class BTreeNode {
 		} else {
 			return children[indexToInsert].insert(element);
 		}
+	}
+	
+	boolean insert(Integer element, BTreeNode leftSubtree, BTreeNode rightSubtree) {
+		//TODO: update leftSubtree parent and rightSubtree parent
+		return false;
 	}
 	/**
 	 * Count of all objects in this node and all of its children summed
@@ -206,11 +214,36 @@ public class BTreeNode {
 	}
 	
 	/**
+	 * removes all elements and children from the given index (inclusive)
+	 * @param index
+	 */
+	private void removeElementsAndChildrenFromIndex(int index) {
+		
+	}
+	/**
+	 * copies all elements and children from a given start index (inclusive) to a given end index (inclusive)
+	 * @param startIndex
+	 * @param endIndex
+	 */
+	private BTreeNode cloneFromStartIndexToEndIndex(int startIndex, int endIndex) {
+		return new BTreeNode(ordinal);
+	}
+	
+	/**
 	 * Checks if the node has too many elements / children
 	 * @return true when the node has too many elements / children. False if not
 	 */
 	private boolean isBursting() {
 		return elements[elements.length - 1] != null;
+	}
+	
+	private void burst() {
+		
+	}
+	
+	private void burstIfNeeded() {
+		if (isBursting())
+			burst();
 	}
 	
 	/**
@@ -226,5 +259,9 @@ public class BTreeNode {
 		}
 		
 		elements[position] = element;
+	}
+
+	public BTreeNode getParent() {
+		return parent;
 	}
 }
