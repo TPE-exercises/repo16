@@ -191,6 +191,26 @@ public class BTreeNode {
 		return elements[0] == null;
 	}
 	
+	BTreeNode deepClone() {
+		BTreeNode newNode = new BTreeNode(ordinal);
+		
+		//Clone elements
+		for(int i = 0; i< elements.length; i++) {
+			if(elements[i] != null) {
+				newNode.elements[i] = elements[i];
+			}
+		}
+		
+		//clone children
+		for(int i = 0; i < children.length; i++) {
+			if(children[i] != null) {
+				newNode.children[i] = children[i].deepClone();
+			}
+		}
+		
+		return newNode;
+	}
+	
 	Integer[] getAllElements() {
 		Integer[] allElements = new Integer[size()];
 		

@@ -66,6 +66,12 @@ public interface BTree {
 	 */
 	Integer[] getAllElements();
 	
+	/**
+	 * creates a deep clone of the BTree 
+	 * @return cloned tree
+	 */
+	BTree clone();
+	
 	void printInorder();
 	void printPostorder();
 	void printPreorder();

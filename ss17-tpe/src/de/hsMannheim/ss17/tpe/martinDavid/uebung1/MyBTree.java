@@ -130,6 +130,14 @@ public class MyBTree implements BTree {
 		
 		return  allInsertionsSuccessfull;
 	}
+	
+	@Override
+	public BTree clone() {
+		MyBTree tree = new MyBTree(ordinal);
+		tree.rootNode = rootNode.deepClone();
+		
+		return tree;
+	}
 
 	@Override
 	public void printInorder() {
