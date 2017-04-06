@@ -3,7 +3,7 @@ package de.hsMannheim.ss17.tpe.martinDavid.uebung1;
 import static gdi.MakeItSimple.*;
 
 public class MyBTree implements BTree {
-	private int ordinal;
+	private final int ordinal;
 	private BTreeNode rootNode;
 	
 	MyBTree(int ordinal) {

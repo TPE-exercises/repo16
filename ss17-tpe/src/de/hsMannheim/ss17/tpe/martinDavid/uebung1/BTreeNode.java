@@ -6,7 +6,7 @@ import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 
 public class BTreeNode {
 	
-	private int ordinal;
+	private final int ordinal;
 	private Integer[] elements;
 	private BTreeNode[] children;
 	private BTreeNode parent;
