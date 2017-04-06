@@ -54,6 +54,13 @@ public class BTreeNode {
 		}
 	}
 	
+	/**
+	 * Inserts an element and two subtrees into this subtree
+	 * @param element to insert
+	 * @param leftSubtree subtree to insert at the left side of the inserted element
+	 * @param rightSubtree subtree to insert at the right side of the inserted element
+	 * @return
+	 */
 	boolean insert(Integer element, BTreeNode leftSubtree, BTreeNode rightSubtree) {
 		int indexToInsert = ArrayUtility.bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
 		if(indexToInsert == -1) {
@@ -79,6 +86,7 @@ public class BTreeNode {
 		
 		return true;
 	}
+	
 	/**
 	 * Count of all objects in this node and all of its children summed
 	 * @return count of all objects in the tree
@@ -93,6 +101,7 @@ public class BTreeNode {
 		}
 		return size;
 	}
+	
 	/**
 	 * Calculates the height of the tree. No element is height 0 and only root element is height 1
 	 * @return the height of the tree
@@ -109,6 +118,10 @@ public class BTreeNode {
 		return maxHeight + 1;
 	}
 	
+	/**
+	 * Searches the min value in this TreeNode (and sub-nodes)
+	 * @return the min value in this TreeNode
+	 */
 	Integer getMin() {
 		if(children[0] != null) {
 			return children[0].getMin();
@@ -120,6 +133,10 @@ public class BTreeNode {
 		}
 	}
 	
+	/**
+	 * Searches the max value in this TreeNode (and sub-nodes)
+	 * @return the max value in this TreeNode
+	 */
 	Integer getMax() {
 		if(hasChildren()) {
 			//get the last children
@@ -139,6 +156,7 @@ public class BTreeNode {
 		
 		return null;
 	}
+	
 	/**
 	 * Checks if the tree contains an object
 	 * @param object 
@@ -147,6 +165,7 @@ public class BTreeNode {
 	boolean contains(Integer o) {
 		return linearContains(o);
 	}
+	
 	/**
 	 * Checks if the tree contains an object with the linear search algorithm
 	 * @param object 
@@ -170,6 +189,7 @@ public class BTreeNode {
 		assert(false);
 		return false;
 	}
+	
 	/**
 	 * Checks if the subtree contains an object with the linear search algorithm
 	 * @param object 
@@ -183,10 +203,18 @@ public class BTreeNode {
 		return false;
 	}
 	
+	/**
+	 * checks if the TreeNode is empty
+	 * @return true if the tree is empty and false if not
+	 */
 	boolean isEmpty() {
 		return elements[0] == null;
 	}
 	
+	/**
+	 * Creates a deep clone of this BTreeNode
+	 * @return deep clone
+	 */
 	BTreeNode deepClone() {
 		BTreeNode newNode = new BTreeNode(ordinal);
 		
@@ -207,6 +235,10 @@ public class BTreeNode {
 		return newNode;
 	}
 	
+	/**
+	 * Returns all elements without a specific order
+	 * @return all elements
+	 */
 	Integer[] getAllElements() {
 		Integer[] allElements = new Integer[size()];
 		
@@ -378,6 +410,10 @@ public class BTreeNode {
 		}
 	}
 
+	/**
+	 * Returns the parent of this TreeNode
+	 * @return parent of this TreeNode
+	 */
 	public BTreeNode getParent() {
 		return parent;
 	}

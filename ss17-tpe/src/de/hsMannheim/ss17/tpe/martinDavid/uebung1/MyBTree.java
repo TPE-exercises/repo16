@@ -23,6 +23,7 @@ public class MyBTree implements BTree {
 		}
 		return successful;
 	}
+	
 	/**
 	 * inserts all elements to the tree
 	 * @param elements
