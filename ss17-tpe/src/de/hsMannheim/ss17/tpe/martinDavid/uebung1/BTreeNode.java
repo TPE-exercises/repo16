@@ -229,6 +229,7 @@ public class BTreeNode {
 		for(int i = 0; i < children.length; i++) {
 			if(children[i] != null) {
 				newNode.children[i] = children[i].deepClone();
+				newNode.children[i].parent = newNode;
 			}
 		}
 		

@@ -150,10 +150,13 @@ public class MyBTreeTest {
 		
 		BTree clonedTree = tree.clone();
 		
-		tree.insert(100);
-		tree.insert(101);
-		tree.insert(102);
-		assertEquals(clonedTree.size(), tree.size() - 3);
+		clonedTree.insert(100);
+		clonedTree.insert(101);
+		clonedTree.insert(102);
+		clonedTree.insert(-2);
+		clonedTree.insert(-3);
+		clonedTree.insert(-4);
+		assertEquals(clonedTree.size(), tree.size() + 6);
 	}
 	
 	private void testEverthing(Integer[] elements, int ordinal) {
