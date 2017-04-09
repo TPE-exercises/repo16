@@ -4,6 +4,7 @@ import static gdi.MakeItSimple.*;
 public class Aufgabe2 {
 	private static final int ordinal = 1;
 	private static final int treeCount = 3;
+	private static final String rootDirectory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung1/";
 	
 	private static BTree[] trees;
 	private static int workingTreeIndex = 0;
@@ -46,7 +47,11 @@ public class Aufgabe2 {
 			break;
 		case 2:
 			println("Enter an Filepath:");
-			String filepath = readLine();
+			//after a call to readInt() the next call to readLine() returns immediately with an empty string
+			//we need to call readLine() twice and just ignore the first result
+			readLine();
+			String userFilepath = readLine();
+			String filepath = rootDirectory + userFilepath;
 			if(getWorkingTree().insert(filepath)) {
 				println("Successful inserted file at path: " + filepath );
 			} else {
