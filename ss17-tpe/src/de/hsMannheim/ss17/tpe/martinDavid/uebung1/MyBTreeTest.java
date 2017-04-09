@@ -15,7 +15,7 @@ public class MyBTreeTest {
 		String filepath = directory + filename;
 		MyBTree tree = new MyBTree(1);
 		tree.insert(filepath);
-		assertEquals("size shoudl be equal", 12, tree.size());
+		assertEquals("size shoudl be equal", 9, tree.size());
 		System.out.println(tree.size());
 		tree.printInorder();
 	}
