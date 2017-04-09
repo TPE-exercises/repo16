@@ -77,10 +77,10 @@ public class Aufgabe2 {
 			println("The maximum element of the tree is: " + getWorkingTree().getMax());
 			break;
 		case 7:
-			println("Min: " + trees[workingTreeIndex].getMin());
+			println("Min: " + getWorkingTree().getMin());
 			break;
 		case 8:
-			println("isEmpty: " + trees[workingTreeIndex].isEmpty());
+			println("isEmpty: " + getWorkingTree().isEmpty());
 			break;
 		case 9:
 			println("Which tree should be added to the working tree (between 0 and " + (treeCount - 1) + "): ");
@@ -90,7 +90,7 @@ public class Aufgabe2 {
 				break;
 			}
 			
-			trees[workingTreeIndex].addAll(trees[treeToAddIndex]);
+			getWorkingTree().addAll(trees[treeToAddIndex]);
 			println("Successful added tree " + treeToAddIndex + " to tree " + workingTreeIndex);
 			break;
 		case 10:
@@ -101,20 +101,20 @@ public class Aufgabe2 {
 				break;
 			}
 			
-			trees[treeToWrite] = trees[workingTreeIndex].clone();
+			trees[treeToWrite] = getWorkingTree().clone();
 			println("Successful cloned tree " + workingTreeIndex + " to tree " + treeToWrite);
 			break;
 		case 11:
-			trees[workingTreeIndex].printInorder();
+			getWorkingTree().printInorder();
 			break;
 		case 12:
-			trees[workingTreeIndex].printPostorder();
+			getWorkingTree().printPostorder();
 			break;
 		case 13:
-			trees[workingTreeIndex].printPreorder();
+			getWorkingTree().printPreorder();
 			break;
 		case 14:
-			trees[workingTreeIndex].printLevelorder();
+			getWorkingTree().printLevelorder();
 			break;
 		default:
 			println("Action with ID(" + userActionID + ") does not exists");
