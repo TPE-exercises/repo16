@@ -18,7 +18,9 @@ public class Aufgabe2 {
 			inputLoop();
 		}
 	}
-	
+	/**
+	 * executes the input loop once
+	 */
 	private static void inputLoop() {
 		
 		printMenu();
@@ -120,11 +122,15 @@ public class Aufgabe2 {
 			println("Action with ID(" + userActionID + ") does not exists");
 		}
 	}
-	
+	/**
+	 * @return the current selected working tree
+	 */
 	private static BTree getWorkingTree() {
 		return trees[workingTreeIndex];
 	}
-	
+	/**
+	 * prints the menu to the standard output
+	 */
 	private static void printMenu() {
 		println("**************************");
 		println("0) change working tree");
