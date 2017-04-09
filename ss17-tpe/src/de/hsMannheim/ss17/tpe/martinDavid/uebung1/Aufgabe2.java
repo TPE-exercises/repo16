@@ -39,7 +39,7 @@ public class Aufgabe2 {
 			println("Enter an Integer to insert into the tree:");
 			int integerToInsert = readInt();
 			if(getWorkingTree().insert(integerToInsert)) {
-				println("Suecessful inserted Integer(" + integerToInsert + ")");
+				println("Successful inserted Integer(" + integerToInsert + ")");
 			} else {
 				println("Failed to insert Integer(" + integerToInsert + ")");
 			}
@@ -48,7 +48,7 @@ public class Aufgabe2 {
 			println("Enter an Filepath:");
 			String filepath = readLine();
 			if(getWorkingTree().insert(filepath)) {
-				println("Suecessful inserted file at path: " + filepath );
+				println("Successful inserted file at path: " + filepath );
 			} else {
 				println("failed to insert file at path: " + filepath );
 			}
