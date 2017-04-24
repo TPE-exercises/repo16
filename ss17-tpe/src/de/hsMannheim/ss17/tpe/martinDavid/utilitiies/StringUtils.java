@@ -33,7 +33,6 @@ public class StringUtils {
 	 * @return text in upper case
 	 */
 	public static String toUpperCase(String text) {
-		
 		if(text == null)
 			return null;
 		
