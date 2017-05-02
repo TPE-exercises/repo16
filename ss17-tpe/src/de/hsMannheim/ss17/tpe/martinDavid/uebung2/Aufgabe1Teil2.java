@@ -14,17 +14,6 @@ public class Aufgabe1Teil2 {
 		String message = reverser.decrypt(afterCaesar);
 		
 		System.out.println("The message is: " + message);
-		
-		//Test
-		String temp1 = reverser.encrypt(message);
-		String temp2 = caesar.encrypt(temp1);
-		String decryptedMessageProbe = reverser.encrypt(temp2);
-		
-		if(decryptedMessageProbe.equals(decryptedMessage)) {
-			System.out.println("Probe was succesfull");
-		} else {
-			System.out.println("Probe was not succesfull");
-		}
 	}
 
 }

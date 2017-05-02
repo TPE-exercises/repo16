@@ -13,6 +13,8 @@ public class CrypterReverseTest {
 		assertEquals("", crypter.encrypt(""));
 		assertEquals(null, crypter.encrypt(null));
 		assertEquals("&/3", crypter.encrypt("3/&"));
+		
+		assertEquals("abeikd", crypter.decrypt(crypter.encrypt("abeikd")));
 	}
 	
 	@Test
