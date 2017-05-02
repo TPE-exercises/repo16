@@ -167,4 +167,25 @@ public class ArrayUtility {
         }
         return max;
     }
+	/**
+	 * Concatenates each element, separated with a given separator
+	 * @param array - list of element
+	 * @param seperator - separator string
+	 * @return concatenated string
+	 */
+	public static String join(Object[] array, String separator) {
+		String result = "";
+		if (array == null) return result;
+		
+		int lastIndex = array.length - 1;
+		for(int index = 0; index < array.length; index++) {
+			Object element = array[index];
+			result += element.toString();
+			if (index != lastIndex) {
+				result += separator;
+			}
+		}
+		
+		return result;
+	}
 }

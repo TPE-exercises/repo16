@@ -1,4 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung2;
+import static gdi.MakeItSimple.*;
+
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 
 public class Eis {
 	/**
@@ -8,7 +11,7 @@ public class Eis {
 	/**
 	 * Der Preis in Euro
 	 */
-	private String preis;
+	private double preis;
 	/**
 	 * Typ des Behältnisses 
 	 */
@@ -29,22 +32,41 @@ public class Eis {
 	 */
 	private String[] extras;
 	
+	Eis(String name, double preis, String behaeltnis, String art, String[] sorten, String[] extras) {
+		this.name = name;
+		this.preis = preis;
+		this.behaeltnis = behaeltnis;
+		this.art = art;
+		this.sorten = sorten;
+		this.extras = extras;
+	}
+	
 	/**
 	 * Bereitet alles vor um mit dem befüllen zu beginnen
 	 */
 	void vorbereiten(){
-		
+		println("Nehme " + behaeltnis + " um " + name + " vorzubereiten.");
 	}
 	/**
-	 * Behältnis mit Sorten nach Art fu ̈llen
+	 * Behältnis mit Sorten nach Art füllen
 	 */
 	void fuellen(){
-		
+		print("Befülle behältnis mit ");
+		print(ArrayUtility.join(this.sorten, ", "));
+		println(" von der Art " + art + ".");
 	}
 	/**
 	 * Eis mit Extras dekorieren
 	 */
 	void dekorieren(){
-		
+		print("Dekoriere " + name + " mit ");
+		print(ArrayUtility.join(this.extras, ", "));
+		println(".");
+	}
+	public double getPreis() {
+		return preis;
+	}
+	public void setPreis(double preis) {
+		this.preis = preis;
 	}
 }
