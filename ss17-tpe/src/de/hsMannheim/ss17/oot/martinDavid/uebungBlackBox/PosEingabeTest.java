@@ -1,5 +1,6 @@
 package de.hsMannheim.ss17.oot.martinDavid.uebungBlackBox;
 
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -69,9 +70,33 @@ public class PosEingabeTest {
 		pos.uebermittleNote("AA", Semester.WS, 1998, 1000000, 1.05);
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	@Test(expected=IllegalArgumentException.class)
+	public void semesterNull() {
+		PosEingabe pos = new PosEingabe();
+		pos.uebermittleNote("AA", null, 1998, 1000000, 1);
 	}
-
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void jahrZuFrueh() {
+		PosEingabe pos = new PosEingabe();
+		pos.uebermittleNote("AA", Semester.WS, 1997, 1000000, 1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void jahrZuSpaet() {
+		PosEingabe pos = new PosEingabe();
+		pos.uebermittleNote("AA", Semester.WS, 2062, 1000000, 1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void matrikelNummerZuKlein() {
+		PosEingabe pos = new PosEingabe();
+		pos.uebermittleNote("AA", Semester.WS, 1998, 999999, 1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void matrikelNummerZuGross() {
+		PosEingabe pos = new PosEingabe();
+		pos.uebermittleNote("AA", Semester.WS, 1998, 10000000, 1);
+	}
 }
