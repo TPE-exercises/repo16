@@ -29,6 +29,6 @@ public class MyInt implements Comparable<MyInt> {
 	
 	@Override
 	public String toString() {
-		return value + "";
+		return String.valueOf(this.value);
 	}
 }
