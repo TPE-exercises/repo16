@@ -1,8 +1,6 @@
 package de.hsMannheim.ss17.oot.martinDavid.uebungBlackBox;
 
-
-import static org.junit.Assert.*;
-
+import org.junit.AfterClass;
 import org.junit.Test;
 
 import ss17.PosEingabe;
@@ -26,6 +24,12 @@ public class PosEingabeTest {
 	public void zuKurzesFach() {
 		PosEingabe pos = new PosEingabe();
 		pos.uebermittleNote("Z", Semester.WS, 1998, 1000000, 1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void zuLangesFach() {
+		PosEingabe pos = new PosEingabe();
+		pos.uebermittleNote("AAAAA", Semester.SS, 2061, 9999999, 4);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -98,5 +102,10 @@ public class PosEingabeTest {
 	public void matrikelNummerZuGross() {
 		PosEingabe pos = new PosEingabe();
 		pos.uebermittleNote("AA", Semester.WS, 1998, 10000000, 1);
+	}
+	
+	@AfterClass
+	public static void derNameIstEgal() throws Exception {
+		PosEingabe.druckeTestergebnis();
 	}
 }
