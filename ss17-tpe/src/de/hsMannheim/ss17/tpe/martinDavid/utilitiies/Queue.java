@@ -6,12 +6,12 @@ public interface Queue {
      *
      * @param element - the element to add
      */
-    public void enqueue(Object element);
+    public void enqueue(Object element) throws OverflowException;
     /**
      * Removes and return the last element of the queue
      * @return the last element of the queue
      */
-    public Object dequeue();
+    public Object dequeue() throws UnderflowException; 
 	/**
 	 * calculates the element count on the queue
 	 * @return the element count of the queue
