@@ -188,4 +188,20 @@ public class ArrayUtility {
 		
 		return result;
 	}
+	
+	/**
+	 * Searches for an object in an object array
+	 * @param array
+	 * @param object to search in the array
+	 * @return the first index of the object. -1 if object is not in array
+	 */
+	public static int indexOf(Object[] array, Object object) {
+		for(int i = 0; i < array.length; i++) {
+			if(array[i].equals(object)) {
+				return i;
+			}
+		}
+		
+		return -1;
+	}
 }
