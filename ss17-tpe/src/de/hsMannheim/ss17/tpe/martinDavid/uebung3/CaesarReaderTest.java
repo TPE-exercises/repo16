@@ -7,13 +7,15 @@ import java.io.StringReader;
 
 import org.junit.Test;
 
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.Dialogs;
+
 public class CaesarReaderTest {
 
 	private static final String rootDirectory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung3/";
 	private static int key = 3;
 	
 	@Test
-	public void encryptTest() throws IOException {
+	public void encryptTest() throws IOException {		
 		String original = "abcÜü%";
 		
 		CaesarReader caesarReader = new CaesarReader(new StringReader(original), key);
