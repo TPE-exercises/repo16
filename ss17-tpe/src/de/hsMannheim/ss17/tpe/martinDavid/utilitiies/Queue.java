@@ -17,4 +17,16 @@ public interface Queue {
 	 * @return the element count of the queue
 	 */
 	public int size();
+	/**
+	 * gets the current max size of the queue
+	 * @return
+	 */
+	public int maxSize();
+	/**
+	 * checks if the Queue is empty or not
+	 * @return true if the size is 0, otherwise false
+	 */
+	default public boolean isEmpty() {
+		return this.size() == 0;
+	}
 }
