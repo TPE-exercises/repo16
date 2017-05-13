@@ -40,7 +40,7 @@ public class StackMenu {
 					stackId = 1;
 					break;
 				default:
-					System.out.println("Unown option");
+					System.out.println("Unkown option");
 					break;
 				}
 			} catch(OverflowException | UnderflowException exception) {
