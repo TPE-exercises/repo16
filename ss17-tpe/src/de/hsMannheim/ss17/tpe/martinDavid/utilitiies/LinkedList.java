@@ -112,8 +112,9 @@ public class LinkedList {
 			return null;
 		}
 		if(head.getNext() == null) {
+			Object val = head.val;
 			head = null;
-			return head.val;
+			return val;
 		}
 		Node previousLastNode = head;
 		Node lastNode = previousLastNode.getNext();
