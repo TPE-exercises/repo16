@@ -96,6 +96,37 @@ public class LinkedList {
 		else
 			return null;
 	}
+	public Object getLast() {
+		if(this.isEmpty())  {
+			return null;
+		}
+		
+		Node lastNode = head;
+		while(lastNode.getNext() != null) {
+			lastNode = lastNode.getNext();
+		}
+		return lastNode.val;
+	}
+	public Object removeLast() {
+		if(this.isEmpty())  {
+			return null;
+		}
+		if(head.getNext() == null) {
+			head = null;
+			return head.val;
+		}
+		Node previousLastNode = head;
+		Node lastNode = previousLastNode.getNext();
+		
+		
+		while(lastNode.getNext() != null) {
+			previousLastNode = lastNode;
+			lastNode = lastNode.getNext();
+		}
+		previousLastNode.setNext(null);
+		
+		return lastNode.val;
+	}
 
 	public int printList() { // returns no. of printed elements
 
@@ -130,6 +161,7 @@ public class LinkedList {
 		return cnt;
 
 	}
+	
 }
 
 // ////////////end of list class ///////////////////////////////////////
