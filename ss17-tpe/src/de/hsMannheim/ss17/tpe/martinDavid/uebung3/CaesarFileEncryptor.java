@@ -91,7 +91,8 @@ public class CaesarFileEncryptor implements IFileEncryptor {
 	}
 	
 	/**
-	 * encrypts all files with all subdirectorys and files in it
+	 * encrypts all files with all subdirectorys and files in it. Only files with the ending ".txt" 
+	 * will be encrypted. The others will not be copied to the encrypted / decrypted folder
 	 * @param directory
 	 * @throws IOException 
 	 */
@@ -110,14 +111,40 @@ public class CaesarFileEncryptor implements IFileEncryptor {
 				goThroughtAllFiles(file, destination, encrypt);
 			} else if(file.isFile()) {
 				
-				if(encrypt)
-					encryptFile(file, destination);
-				else
-					decryptFile(file, destination);
+				if(getFileEnding(file).equals("txt")) {
+					if(encrypt)
+						encryptFile(file, destination);
+					else
+						decryptFile(file, destination);
+				}
+				
 			}
 		}
 	}
 	
+	/**
+	 * Find the file ending. For example "test.exe" -> "exe" is the file ending
+	 * when there is no ending like "noEnding" then the file name is returned
+	 * @param file
+	 * @return
+	 */
+	private String getFileEnding(File file) {
+		String path = file.getAbsolutePath();
+		int indexLastDot = path.lastIndexOf('.');
+		
+		if(indexLastDot != -1)
+			return path.substring(indexLastDot + 1);
+		else
+			return file.getName();
+	}
+	
+	/**
+	 * reads a file and saves the data encrypted into a new file. The file will be created or
+	 * overwritten if it already exists
+	 * @param sourceFile original file
+	 * @param destinationFile 
+	 * @throws IOException if an I/O Error occurs
+	 */
 	private void encryptFile(File sourceFile, File destinationFile) throws IOException {		
 		reader = new BufferedReader(new FileReader(sourceFile));
 		writer = new BufferedWriter(new CaesarWriter(new FileWriter(destinationFile), key));
@@ -125,6 +152,13 @@ public class CaesarFileEncryptor implements IFileEncryptor {
 		copyFile(reader, writer);
 	}
 	
+	/**
+	 * reads an encryted file and saves the data decrypted into a new file. The file will be created or
+	 * overwritten if it already exists
+	 * @param sourceFile original file
+	 * @param destinationFile 
+	 * @throws IOException if an I/O Error occurs
+	 */
 	private void decryptFile(File sourceFile, File destinationFile) throws IOException {		
 		reader = new BufferedReader(new CaesarReader(new FileReader(sourceFile), key));
 		writer = new BufferedWriter(new FileWriter(destinationFile));
@@ -132,6 +166,12 @@ public class CaesarFileEncryptor implements IFileEncryptor {
 		copyFile(reader, writer);
 	}
 	
+	/**
+	 * creates a copy from one file (reader) and writes it to an other file (writer)
+	 * @param reader original file
+	 * @param writer destination file
+	 * @throws IOException
+	 */
 	private void copyFile(BufferedReader reader, BufferedWriter writer) throws IOException {
 		String line;
 		while((line = reader.readLine()) != null) {
