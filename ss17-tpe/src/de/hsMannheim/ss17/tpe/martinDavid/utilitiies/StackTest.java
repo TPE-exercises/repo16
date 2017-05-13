@@ -10,7 +10,7 @@ public abstract class StackTest {
 	public int initalMaxSize = 4;
 	Stack stack;
 	@Before
-	abstract public void setup();
+	abstract public void setUp();
 	
 	@Test
 	public void pushAndPop() throws OverflowException, UnderflowException {
