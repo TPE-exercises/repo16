@@ -1,0 +1,5 @@
+catch or throw Regel
+
+Wenn eine exception ausgelöst wird, wandert sie den call stack runter bis sie ein try/catch findet. 
+Wenn ein catch gefunden wird, das eine Exception dieser Klasse fangen kann, wird dieser catch block ausgeführt. 
+Ansonsten geht die Exception weiter denn call stack runter bis sie einen passenden catch Block findet oder am ende angelangt ist.
