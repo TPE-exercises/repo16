@@ -204,4 +204,16 @@ public class ArrayUtility {
 		
 		return -1;
 	}
+	/**
+	 * copies all elements from `source` array to `destination` array between `startIndex` and `endIndex` (inclusive)
+	 * @param source - source array
+	 * @param destination - destination array
+	 * @param startIndex - start index (inclusive)
+	 * @param endIndex - end index (inclusive)
+	 */
+	public static void copy(Object[] source, Object[] destination, int startIndex, int endIndex) {
+		for(int index = startIndex; index <= endIndex; index++) {
+			destination[index] = source[index];
+		}
+	}
 }
