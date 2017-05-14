@@ -71,7 +71,9 @@ public class RingBuffer {
 			this.array[index] = oldArray[oldIndex];
 		}
 		
-		//TODO müsste nicht noch lowerBound und upperBound aktualisert werden?
+		lowerBound = 0;
+		upperBound = elementCount;
+		//TODO müsste nicht noch lowerBound und upperBound wie oben aktualisiert werden?
 		/*
 		 * Ich habe mal getestet die Zahlen 1 - 4 zum RingBufferQueue hinzuzufügen und dann wieder zwei ausgeben gelassen
 		 * Danach füge mal 5 - 7 ein. Bei der 7 kommt ein overflow und er sagt, dass jetzt plötzlich 8 Elemente in der Queue sind
