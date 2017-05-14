@@ -10,7 +10,7 @@ public class LinkedListQueue implements Queue {
 	private final int initalMaxSize;
 			
 	LinkedListQueue() {
-		this(4);
+		this(4); //TODO standart werte in Variablen abspeichern
 	}
 	LinkedListQueue(int maxSize) {
 		this.initalMaxSize = maxSize;
@@ -34,6 +34,8 @@ public class LinkedListQueue implements Queue {
 		try {
 			this.enqueuOrThrow(element);
 		} catch(OverflowException overflowException) {
+			//TODO ich verstehe aus der Aufgabenstellung, dass diese Exception auch bis zu enqueue durchgereicht werden soll und nicht nur hier abgefangen werden soll.
+			
 			this.maxSize(this.maxSize() * 2);
 			this.enqueuAndDoubleSizeIfNeeded(overflowException.getElementCausedOverflow());
 		}

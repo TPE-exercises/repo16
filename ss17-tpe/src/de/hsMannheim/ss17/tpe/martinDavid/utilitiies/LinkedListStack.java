@@ -32,6 +32,8 @@ public class LinkedListStack implements Stack {
 		try {
 			this.pushOrThrow(element);
 		} catch(OverflowException overflowException) {
+			//TODO ich verstehe aus der Aufgabenstellung, dass diese Exception auch bis zu push durchgereicht werden soll und nicht nur hier abgefangen werden soll.
+			
 			this.maxSize(this.maxSize() * 2);
 			this.pushAndDoubleSizeIfNeeded(overflowException.getElementCausedOverflow());
 		}

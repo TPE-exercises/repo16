@@ -22,6 +22,7 @@ public class RingBufferQueue implements Queue {
 			this.ringBuffer.addLast(element);
 		} catch (OverflowException overflowException) {
 			if (this.maxSize() == this.initalMaxSize) {
+				//TOOD das selbe wie in der anderen Queue: ich würde die exception auch noch zusätzlich weiterreichen
 				this.ringBuffer.increaseStorageTo(this.ringBuffer.maxSize() * 2);
 				this.ringBuffer.addLast(overflowException.getElementCausedOverflow());
 			} else {
