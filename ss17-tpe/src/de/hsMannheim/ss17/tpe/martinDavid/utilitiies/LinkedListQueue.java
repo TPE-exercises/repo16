@@ -1,7 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
 
 public class LinkedListQueue implements Queue {
-	
+	static private final int defaulMaxSize = 4;
 	private int maxSize;
 	private LinkedList list = new LinkedList();
 	/**
@@ -10,7 +10,7 @@ public class LinkedListQueue implements Queue {
 	private final int initalMaxSize;
 			
 	LinkedListQueue() {
-		this(4); //TODO standart werte in Variablen abspeichern
+		this(defaulMaxSize);
 	}
 	LinkedListQueue(int maxSize) {
 		this.initalMaxSize = maxSize;

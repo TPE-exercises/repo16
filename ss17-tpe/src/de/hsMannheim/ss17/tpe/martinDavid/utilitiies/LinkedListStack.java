@@ -1,7 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
 
 public class LinkedListStack implements Stack {
-	
+	static private final int defaulMaxSize = 4;
 	private int maxSize;
 	private LinkedList list = new LinkedList();
 	/**
@@ -10,7 +10,7 @@ public class LinkedListStack implements Stack {
 	private final int initalMaxSize;
 			
 	LinkedListStack() {
-		this(4);
+		this(defaulMaxSize);
 	}
 	LinkedListStack(int maxSize) {
 		this.initalMaxSize = maxSize;

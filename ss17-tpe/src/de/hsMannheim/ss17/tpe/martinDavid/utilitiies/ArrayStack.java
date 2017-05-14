@@ -1,6 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
 
 public class ArrayStack implements Stack {
+	static private final int defaulMaxSize = 4;
 	private Object[] array;
 	private int lastElementIndex = -1;
 	/**
@@ -9,7 +10,7 @@ public class ArrayStack implements Stack {
 	private final int initalMaxSize;
 			
 	ArrayStack() {
-		this(4);
+		this(defaulMaxSize);
 	}
 	ArrayStack(int maxSize) {
 		this.initalMaxSize = maxSize;

@@ -1,7 +1,7 @@
 package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
 
 public class RingBufferQueue implements Queue {
-	
+	static private final int defaulMaxSize = 4;
 	RingBuffer ringBuffer;
 	/**
 	 * the max size of the queue with which it was created
@@ -9,7 +9,7 @@ public class RingBufferQueue implements Queue {
 	private final int initalMaxSize;
 			
 	RingBufferQueue() {
-		this(4);
+		this(defaulMaxSize);
 	}
 	RingBufferQueue(int maxSize) {
 		this.initalMaxSize = maxSize;
