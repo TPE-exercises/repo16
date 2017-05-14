@@ -28,41 +28,20 @@ public class CaesarReader extends FilterReader {
 		return decrypted;
 	}
 
-	/*
+	
 	@Override
 	public int read(char[] cbuf, int off, int len) throws IOException {
 		int returnValue = in.read(cbuf, off, len);
 		
 		if(returnValue != -1 ) {
-			String decrypted = crypter.decrypt(new String(cbuf, off, returnValue));
-			cbuf = decrypted.toCharArray();
+			for(int i = off; i < off + len; i++) {
+				if(cbuf.length > i) {
+					cbuf[i] = crypter.decrypt(cbuf[i]);
+				}
+			}
 		}
 		
 		return returnValue;
-	}*/
-	
-	
-	private String str = "";
-	private int pos = 0;
-	
-	@Override
-	public int read(char[] cbuf, int off, int len) throws IOException {
-	  if (pos == str.length()) {
-		  // No leftovers from a previous call available, need to actually read more
-		  int result = in.read(cbuf, off, len);
-		  if( result <= 0 ){
-			  return -1;
-		  }
-		  str = new String(cbuf, off, result);
-		  str = crypter.decrypt(str);
-		  pos = 0;
-	  }
-
-	  // Return as much as we have available, but not more than len
-	  int available = Math.min(str.length() - pos, len);     
-	  str.getChars(pos, pos + available, cbuf, off);
-	  pos += available;
-	  return available;
 	}
 	
 
