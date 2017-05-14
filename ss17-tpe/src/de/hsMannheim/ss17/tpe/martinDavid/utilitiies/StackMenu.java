@@ -55,7 +55,7 @@ public class StackMenu {
 		System.out.println("1: stack.push(String);");
 		System.out.println("2: stack.pop();");
 		System.out.println("3: switch to ArrayStack() implementation");
-		System.out.println("3: switch to LinkedListStack() implementation");
+		System.out.println("4: switch to LinkedListStack() implementation");
 	}
 	
 	static void printDescription(Stack stack) {

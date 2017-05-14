@@ -55,7 +55,7 @@ public class QueueMenu {
 		System.out.println("1: queue.enqueue(String);");
 		System.out.println("2: queue.dequeue();");
 		System.out.println("3: switch to RingBufferQueue() implementation");
-		System.out.println("3: switch to LinkedListQueue() implementation");
+		System.out.println("4: switch to LinkedListQueue() implementation");
 	}
 	
 	static void printDescription(Queue queue) {
