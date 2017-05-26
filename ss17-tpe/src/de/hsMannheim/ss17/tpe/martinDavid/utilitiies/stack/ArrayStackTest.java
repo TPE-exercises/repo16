@@ -1,4 +1,4 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
+package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.stack;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,8 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
+package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.queue;
+
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.LinkedList;
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.OverflowException;
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.UnderflowException;
 
 public class LinkedListQueue implements Queue {
 	static private final int defaulMaxSize = 4;

@@ -1,5 +1,8 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
+package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.stack;
 import static gdi.MakeItSimple.*;
+
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.OverflowException;
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.UnderflowException;
 
 public class StackMenu {
 	static Stack[] stacks;

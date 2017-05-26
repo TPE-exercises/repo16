@@ -1,20 +1,24 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
+package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.stack;
 
-public class ArrayStack implements Stack {
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.LinkedList;
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.OverflowException;
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.UnderflowException;
+
+public class LinkedListStack implements Stack {
 	static private final int defaulMaxSize = 4;
-	private Object[] array;
-	private int lastElementIndex = -1;
+	private int maxSize;
+	private LinkedList list = new LinkedList();
 	/**
 	 * the max size of the stack with which it was created
 	 */
 	private final int initalMaxSize;
 			
-	ArrayStack() {
+	LinkedListStack() {
 		this(defaulMaxSize);
 	}
-	ArrayStack(int maxSize) {
+	LinkedListStack(int maxSize) {
 		this.initalMaxSize = maxSize;
-		this.array = new Object[maxSize];
+		this.maxSize(maxSize);
 	}
 	@Override
 	public void push(Object element) throws OverflowException {
@@ -32,6 +36,8 @@ public class ArrayStack implements Stack {
 		try {
 			this.pushOrThrow(element);
 		} catch(OverflowException overflowException) {
+			//TODO ich verstehe aus der Aufgabenstellung, dass diese Exception auch bis zu push durchgereicht werden soll und nicht nur hier abgefangen werden soll.
+			
 			this.maxSize(this.maxSize() * 2);
 			this.pushAndDoubleSizeIfNeeded(overflowException.getElementCausedOverflow());
 		}
@@ -44,8 +50,7 @@ public class ArrayStack implements Stack {
 		if(this.size() >= this.maxSize()) {
 			throw new OverflowException("This element would exceede the maximum size of the Stack", element);
 		}
-		this.lastElementIndex += 1;
-		this.array[this.lastElementIndex] = element;
+		this.list.addLast(element);
 	}
 
 	@Override
@@ -53,33 +58,23 @@ public class ArrayStack implements Stack {
 		if(this.isEmpty()) {
 			throw new UnderflowException("The Stack is empty. Can not pop");
 		}
-		Object lastElement = this.array[this.lastElementIndex];
-		this.array[this.lastElementIndex] = null;
-		this.lastElementIndex -= 1;
-		return lastElement;
+		return this.list.removeLast();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return this.lastElementIndex + 1;
+		return this.list.size();
 	}
 	/**
-	 * sets the max size to the given value and extends the array
+	 * sets the max size to the given value.
 	 * @param maxSize
 	 */
 	private void maxSize(int maxSize) {
-		if(maxSize() == maxSize) {
-			return;
-		}
-		Object[] oldArray = this.array;
-		this.array = new Object[maxSize];
-		ArrayUtility.copy(oldArray, array, 0, lastElementIndex);
+		this.maxSize = maxSize;
 	}
 	@Override
 	public int maxSize() {
-		// TODO Auto-generated method stub
-		return array.length;
+		return this.maxSize;
 	}
-
+	
 }

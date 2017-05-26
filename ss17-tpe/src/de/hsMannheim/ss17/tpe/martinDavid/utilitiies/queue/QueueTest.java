@@ -1,9 +1,12 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
+package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.queue;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.OverflowException;
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.UnderflowException;
 
 public abstract class QueueTest {
 	

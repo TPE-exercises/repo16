@@ -11,7 +11,7 @@ public class OverflowException extends Exception {
 		this.elementCausedOverflow = elementCausedOverflow;
 	}
 	
-	OverflowException(String message, Object element) {
+	public OverflowException(String message, Object element) {
 		super(message);
 		setElementCausedOverflow(element);
 	}

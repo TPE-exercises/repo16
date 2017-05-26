@@ -1,4 +1,4 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies;
+package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.queue;
 
 public class RingBufferQueueTest extends QueueTest {
 
