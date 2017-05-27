@@ -4,9 +4,9 @@ import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.OverflowException;
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.UnderflowException;
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.queue.RingBuffer;
 
-public class ThreadsafeRingbufffer {
+public class ThreadSafeRingBufffer {
 	private RingBuffer ringBuffer;
-	public ThreadsafeRingbufffer(int maxSize) {
+	public ThreadSafeRingBufffer(int maxSize) {
 		ringBuffer = new RingBuffer(maxSize);
 	}
 	/**
