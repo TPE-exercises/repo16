@@ -75,5 +75,14 @@ public class ThreadSafeRingBuffer {
 			return null;
 		}
 	}
+	/**
+	 * blocks the current thread until the ring buffer is empty
+	 * @throws InterruptedException
+	 */
+	public synchronized void waitUntilEmpty() throws InterruptedException {
+		while(!ringBuffer.isEmpty()) {
+			wait();
+		}
+	}
 	
 }
