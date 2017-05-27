@@ -216,4 +216,17 @@ public class ArrayUtility {
 			destination[index] = source[index];
 		}
 	}
+	
+	/**
+	 * swaps two elements in an array
+	 * @param array 
+	 * @param firstIndex index of first number to swap
+	 * @param secondIndex index of second number to swap
+	 */
+	public static void swapElements(Object[] array, int firstIndex, int secondIndex) {
+		Object firstElementToChange = array[firstIndex];
+		
+		array[firstIndex] = array[secondIndex];
+		array[secondIndex] = firstElementToChange;
+	}
 }
