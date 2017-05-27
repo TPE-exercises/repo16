@@ -7,7 +7,7 @@ public class RingBuffer {
 	private Object[] array;
 	private int lowerBound = 0;
 	private int upperBound = 0;
-	RingBuffer(int size) {
+	public RingBuffer(int size) {
 		this.array = new Object[size + 1];
 	}
 	/**
@@ -16,7 +16,7 @@ public class RingBuffer {
 	 * @throws OverflowException if the ring buffer full a OverflowException will be thrown
 	 */
 	public void addLast(Object element) throws OverflowException {
-		if (this.size() == this.maxSize()) 
+		if (isFull()) 
 			throw new OverflowException("RingBuffer overflow", element);
 		else {
 			array[upperBound] = element;
@@ -57,6 +57,13 @@ public class RingBuffer {
 	 */
 	public boolean isEmpty() {
 		return lowerBound == upperBound;
+	}
+	/**
+	 * return true if the ring buffer is full, otherwise false
+	 * @return
+	 */
+	public boolean isFull() {
+		return size() == maxSize();
 	}
 	/**
 	 * increase the max size to the given value and copies the elements to the new array.
