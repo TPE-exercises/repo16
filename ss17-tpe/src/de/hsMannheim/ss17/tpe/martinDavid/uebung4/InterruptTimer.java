@@ -1,4 +1,4 @@
-package de.hsMannheim.ss17.tpe.martinDavid.utilitiies.queue;
+package de.hsMannheim.ss17.tpe.martinDavid.uebung4;
 
 public class InterruptTimer extends Thread {
 	private Thread[] threads;
