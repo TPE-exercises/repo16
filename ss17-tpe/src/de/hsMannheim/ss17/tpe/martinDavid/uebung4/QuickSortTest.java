@@ -57,6 +57,11 @@ public class QuickSortTest {
 		System.out.println("Rekursion parallel: " + quickSortParallel.getCounterRekursion());
 		
 		System.out.println("Threads created: " + quickSortParallel.getCounterThreadsUsed());
+		
+		/*
+		 * Das erzeugen und managen der Threads ist viel zu aufwendig verglichen mit den Rechnungen, die durchgeführt werden.
+		 * Deswegen wird beim parallelen QuickSort mehr Zeit benötigt
+		 */
 	}
 	
 	private Integer[] getArrayToSort() {

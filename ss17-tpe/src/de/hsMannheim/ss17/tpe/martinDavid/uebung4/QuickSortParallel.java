@@ -24,6 +24,8 @@ public class QuickSortParallel implements SortAlgorithm {
 		Thread quickSortThread = getNewQuickSortThread(array, 0, array.length-1);
 		quickSortThread.start();
 		
+		//The method should return when the sort is finished. So wait until the thread is finished
+		
 		try {
 			quickSortThread.join();
 		} catch (InterruptedException e) {
