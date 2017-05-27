@@ -1,0 +1,15 @@
+1: Safety Hazards 
+Wenn mehrere Threads gleichzeitig auf Resoursen zugreifen wollen müssen diese synchornisiert werden. Ansonsten kann es ein, dass zum Beispiel
+ein Thread eine Variable liest, diese Verändert aber bevor er diese wieder in den Speicher schreiben kann ein anderer Thread die Varaible liest
+und mit dem alten / noch nicht akutalisierten Wert weiterrechnet. Dadurch verhält sich das Programm in Anwesenheit von mehreren Threads nicht 
+mehr wie erwartet / korrekt.
+
+2. Liveness	Hazards	
+Probleme bei denen ein Programm mit mehreren Threads in einen Zustand gerät, bei dem es keine Fortschritte mehr machen kann. Zum Beispiel will
+jemand Geld von der Bank abheben und dabei findet dieser Aufruf synchronisiert statt. Jetzt ist jedoch nicht genügend Geld auf dem Konto und 
+es wird so lange gewartet bis wieder genügend Geld vorhanden ist. Leider kann aber kein Geld auf das Konto gebucht werden, weil die Abbuch-Funktion
+die Geld-einzahl funktion blockiert.
+
+3. Performance Hazards
+Ein Programm das zwar korrekt funktioniert, die Performance ist jedoch troz mehrere Threads schlechter. Das kann passieren wenn die Threads zu
+kleine Aufgaben bekommen und das erstellen / managen der Threads rechenintensiver ist, als die Rechnung an sich. Beispiel: QuickSort
