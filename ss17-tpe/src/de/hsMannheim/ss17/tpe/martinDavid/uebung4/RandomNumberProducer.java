@@ -33,7 +33,6 @@ public class RandomNumberProducer extends Thread {
 				generatedNumbers.add(randomInteger);
 				sleep(delay);
 			} catch (InterruptedException e) {
-				System.out.println("RandomNumberProducer interupted");
 				interrupt();
 			}
 		}
