@@ -84,4 +84,18 @@ public class RingBuffer {
 		lowerBound = 0;
 		upperBound = elementCount;
 	}
+	/**
+	 * creates an array with each element
+	 * the first element is at index 0 followed by the next elements
+	 * @return
+	 */
+	public Object[] toContinuesArray() {
+		int elementCount = this.size();
+		Object[] continuesArray = new Object[elementCount];
+		for(int index = 0; index < elementCount; index++) {
+			int elementIndex = (lowerBound + index) % array.length;
+			continuesArray[index] = array[elementIndex];
+		}
+		return continuesArray;
+	}
 }
