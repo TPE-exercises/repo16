@@ -1,5 +1,6 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung4;
 
+import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.OverflowException;
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.UnderflowException;
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.queue.RingBuffer;
@@ -84,5 +85,50 @@ public class ThreadSafeRingBuffer {
 			wait();
 		}
 	}
+	/**
+	 * blocks the current thread until the ring buffer is full
+	 * @throws InterruptedException
+	 */
+	public synchronized void waitUntilFull() throws InterruptedException {
+		while(!ringBuffer.isFull()) {
+			wait();
+		}
+	}
+	/**
+	 * returns an array of all elements in the input order
+	 * @return
+	 */
+	public synchronized Object[] toContinuesArray() {
+		return ringBuffer.toContinuesArray();
+	}
+	/**
+	 * returns the size of the ring buffer thread safe
+	 * @return
+	 */
+	public synchronized int size() {
+		return ringBuffer.size();
+	}
+	/**
+	 * returns true if the ring buffer is empty, otherwise false
+	 * @return
+	 */
+	public synchronized boolean isEmpty() {
+		return ringBuffer.isEmpty();
+	}
 	
+	/**
+	 * return true if the ring buffer is full, otherwise false
+	 * @return
+	 */
+	public synchronized boolean isFull() {
+		return ringBuffer.isFull();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		return "{" + ArrayUtility.join(toContinuesArray(), ",") + "}";
+	}
 }
