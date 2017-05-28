@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomNumberProducer extends Thread {
+	static private int producerCount = 0;
 	private Random generator;
 	private long delay;
 	private ThreadSafeRingBuffer ringBuffer;
@@ -20,6 +21,8 @@ public class RandomNumberProducer extends Thread {
 		this.ringBuffer = ringBuffer;
 		this.generator = new Random(seed);
 		this.delay = delay;
+		producerCount++;
+		this.setName("Producer " + producerCount);
 	}
 	@Override
 	public void run() {
@@ -31,6 +34,7 @@ public class RandomNumberProducer extends Thread {
 			try {
 				ringBuffer.put(randomInteger);
 				generatedNumbers.add(randomInteger);
+				System.out.println(getName() + " did put number " + randomInteger.toString() + " on ring buffer");
 				sleep(delay);
 			} catch (InterruptedException e) {
 				interrupt();

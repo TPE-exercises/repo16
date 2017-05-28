@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class NumberConsumerTest {
-	static private final int MAX_SIZE = 5000;
+	static private final int MAX_SIZE = 1000;
 	private ThreadSafeRingBuffer ringBuffer;
 	private RandomNumberProducer producer;
 	
