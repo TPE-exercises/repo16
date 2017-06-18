@@ -418,4 +418,10 @@ public class BTreeNode {
 	public BTreeNode getParent() {
 		return parent;
 	}
+	public BTreeNode[] getChildren() {
+		return children;
+	}
+	public Integer[] getElements() {
+		return elements;
+	}
 }
