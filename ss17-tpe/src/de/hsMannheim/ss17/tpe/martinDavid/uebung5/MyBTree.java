@@ -188,4 +188,10 @@ public class MyBTree implements BTree, Iterable<Integer> {
 		return new MyBTreeIterator(rootNode);
 	}
 
+	@Override
+	public boolean delete(Integer object) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

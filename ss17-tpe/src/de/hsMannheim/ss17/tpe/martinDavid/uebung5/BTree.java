@@ -17,6 +17,13 @@ public interface BTree {
 	boolean insert (String filename);
 	
 	/**
+	 * Deletes a object from the tree
+	 * @param object to delete
+	 * @return true if the object was found and deleted. False if not
+	 */
+	boolean delete(Integer object);
+	
+	/**
 	 * Checks if the tree contains an object
 	 * @param object 
 	 * @return true when the object is already in the tree and false if not
