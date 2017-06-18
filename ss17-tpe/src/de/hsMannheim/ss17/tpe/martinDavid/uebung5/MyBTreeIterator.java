@@ -9,7 +9,7 @@ public class MyBTreeIterator implements Iterator<Integer> {
 	private BTreeNode currentNode;
 	private int currentElementIndex = 0;
 	public MyBTreeIterator(BTreeNode node) {
-		if(node != null) {
+		if(node != null && !node.isEmpty()) {
 			queue.addLast(node);
 		}
 	}
@@ -26,19 +26,23 @@ public class MyBTreeIterator implements Iterator<Integer> {
 				if(child == null) {
 					break;
 				}
-				queue.addLast(child);
+				if(!child.isEmpty()) {
+					queue.addLast(child);
+				}
 			}
 		}
 		Integer[] elements = currentNode.getElements();
 		if(currentElementIndex < elements.length && elements[currentElementIndex] != null) {
+			int index = currentElementIndex;
 			currentElementIndex++;
-			return elements[currentElementIndex];
-		} else {
-			//reset state
-			currentNode = null;
-			currentElementIndex = 0;
-			return next();
+			if (currentElementIndex < elements.length) {
+				//reset state
+				currentNode = null;
+				currentElementIndex = 0;
+			}
+			return elements[index];
 		}
+		return null;
 	}
 
 }
