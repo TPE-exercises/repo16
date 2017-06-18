@@ -1,8 +1,13 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung5;
 
-import static gdi.MakeItSimple.*;
+import static gdi.MakeItSimple.isEndOfInputFile;
+import static gdi.MakeItSimple.openInputFile;
+import static gdi.MakeItSimple.println;
+import static gdi.MakeItSimple.readInt;
 
+import java.sql.Array;
 import java.util.Iterator;
+import java.util.List;
 
 public class MyBTree implements BTree, Iterable<Integer> {
 	private final int ordinal;
@@ -190,8 +195,21 @@ public class MyBTree implements BTree, Iterable<Integer> {
 
 	@Override
 	public boolean delete(Integer object) {
-		// TODO Auto-generated method stub
-		return false;
+		MyBTree newTree = new MyBTree(ordinal);
+		
+		boolean deleted = false;
+		Integer[] allElements = getAllElements();
+		for(int i = 0; i < allElements.length; i++) {
+			if(!deleted && allElements[i] == object) {
+				deleted = true;
+			} else {
+				newTree.insert(allElements[i]);
+			}
+		}
+		
+		this.rootNode = newTree.rootNode;
+		
+		return deleted;
 	}
 
 }

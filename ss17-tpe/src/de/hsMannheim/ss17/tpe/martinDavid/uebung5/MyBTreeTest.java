@@ -190,6 +190,16 @@ public class MyBTreeTest {
 		assertEquals(expectedMax, actualMax);
 	}
 	
-	
+	@Test
+	public void deleteTest() {
+		MyBTree tree = new MyBTree(2);
+		tree.insert(2);
+		assertTrue("should delete element", tree.delete(2));
+		
+		assertEquals(0, tree.size());
+		assertTrue("Should be empty", tree.isEmpty());
+		
+		assertFalse("can not delete elment", tree.delete(2));
+	}
 
 }
