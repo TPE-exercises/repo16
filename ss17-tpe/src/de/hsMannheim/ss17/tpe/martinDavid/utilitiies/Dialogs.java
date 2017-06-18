@@ -18,4 +18,17 @@ public class Dialogs {
 		
 		return null;
 	}
+	
+	public static File chooseFile() {
+		JFileChooser fc = new JFileChooser();
+		fc.setCurrentDirectory(new java.io.File(".")); // start at application current directory
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int returnVal = fc.showSaveDialog(null);
+		
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+		    return fc.getSelectedFile();
+		}
+		
+		return null;
+	}
 }
