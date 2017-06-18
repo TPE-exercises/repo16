@@ -2,7 +2,9 @@ package de.hsMannheim.ss17.tpe.martinDavid.uebung5;
 
 import static gdi.MakeItSimple.*;
 
-public class MyBTree implements BTree {
+import java.util.Iterator;
+
+public class MyBTree implements BTree, Iterable<Integer> {
 	private final int ordinal;
 	private BTreeNode rootNode;
 	
@@ -179,6 +181,11 @@ public class MyBTree implements BTree {
 		}
 		
 		println();
+	}
+
+	@Override
+	public Iterator<Integer> iterator() {
+		return new MyBTreeIterator(rootNode);
 	}
 
 }
