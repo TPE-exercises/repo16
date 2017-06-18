@@ -16,7 +16,7 @@ public class LinkedListQueue implements Queue {
 	LinkedListQueue() {
 		this(defaulMaxSize);
 	}
-	LinkedListQueue(int maxSize) {
+	public LinkedListQueue(int maxSize) {
 		this.initalMaxSize = maxSize;
 		this.maxSize(maxSize);
 	}
