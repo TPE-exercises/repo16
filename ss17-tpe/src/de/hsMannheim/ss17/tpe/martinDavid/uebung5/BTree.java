@@ -1,6 +1,6 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung5;
 
-public interface BTree {
+public interface BTree extends Iterable<Integer> {
 
 	/**
 	 * Inserts an object into the tree

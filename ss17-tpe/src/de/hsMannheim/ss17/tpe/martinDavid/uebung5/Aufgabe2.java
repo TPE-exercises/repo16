@@ -118,6 +118,14 @@ public class Aufgabe2 {
 		case 14:
 			getWorkingTree().printLevelorder();
 			break;
+		case 15:
+			println("start iterating over working tree:");
+			for(Integer number: getWorkingTree()) {
+				print(number);
+				print(" ");
+			}
+			println();
+			println("end iterating over working tree");
 		default:
 			println("Action with ID(" + userActionID + ") does not exists");
 		}
@@ -148,6 +156,7 @@ public class Aufgabe2 {
 		println("12) printPostOrder");
 		println("13) printPreOrder");
 		println("14) printLevelOrder");
+		println("15) iterator");
 	}
 
 }
