@@ -35,7 +35,8 @@ public class MyBTreeIterator implements Iterator<Integer> {
 		if(currentElementIndex < elements.length && elements[currentElementIndex] != null) {
 			int index = currentElementIndex;
 			currentElementIndex++;
-			if (currentElementIndex < elements.length) {
+			//check if the currentNode has some elements left
+			if (currentElementIndex >= (elements.length -1) || elements[currentElementIndex] == null) {
 				//reset state
 				currentNode = null;
 				currentElementIndex = 0;
