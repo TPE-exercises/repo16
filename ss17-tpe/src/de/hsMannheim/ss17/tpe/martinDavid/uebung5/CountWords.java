@@ -33,7 +33,7 @@ public class CountWords {
 		for(int i = 0; i < 100 && i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
-		System.out.println("Time needed: " + (endTime - startTime));
+		System.out.println("Time needed: " + (endTime - startTime) / 1000 + " seconds");
 	}
 	
 	private static final String[] symbolsToRemove = {"!","\"", "$", "%", "&", "/", "\\(", "\\)", "=", 
@@ -85,7 +85,7 @@ public class CountWords {
 				words.put(word, count);
 			}
 			
-			if(i % 1000 == 0) {
+			if(i % 10000 == 0) {
 				System.out.println(((float) i / (float) splittedSpace.size()) * 100 + " Prozent (" + i + " von " + splittedSpace.size() + ")");
 			}
 		}
