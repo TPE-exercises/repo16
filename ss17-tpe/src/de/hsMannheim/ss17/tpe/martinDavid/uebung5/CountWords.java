@@ -80,7 +80,7 @@ public class CountWords {
 		for(int i = 0; i < splittedSpace.size(); i++) {
 			word = splittedSpace.get(i);
 			
-			if(!words.containsKey(word)) {
+			if(!words.containsKey(word) && word.length() > 0) {
 				count = Collections.frequency(splittedSpace, word);
 				words.put(word, count);
 			}
