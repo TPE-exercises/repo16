@@ -1,13 +1,13 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung5;
 
-public interface BTree extends Iterable<Integer> {
+public interface BTree<E extends Comparable<E>> extends Iterable<E> {
 
 	/**
 	 * Inserts an object into the tree
 	 * @param object to insert
 	 * @return if the object can be inserted and false if not (the object alreay exists in the tree)
 	 */
-	boolean insert(Integer object);
+	boolean insert(E object);
 	
 	/**
 	 * Inserts all Integers in the given file. They have to be separated by ',' or space
@@ -21,14 +21,14 @@ public interface BTree extends Iterable<Integer> {
 	 * @param object to delete
 	 * @return true if the object was found and deleted. False if not
 	 */
-	boolean delete(Integer object);
+	boolean delete(E object);
 	
 	/**
 	 * Checks if the tree contains an object
 	 * @param object 
 	 * @return true when the object is already in the tree and false if not
 	 */
-	boolean contains(Integer object);
+	boolean contains(E object);
 	
 	/**
 	 * Counts of all objects in the tree
@@ -46,13 +46,13 @@ public interface BTree extends Iterable<Integer> {
 	 * Searches for the largest element in the tree
 	 * @return the largest element in the tree. Null when there is no element
 	 */
-	Integer getMax();
+	E getMax();
 	
 	/**
 	 * Searches for the smallest element in the tree
 	 * @return the smallest element in the tree. Null when there is no element
 	 */
-	Integer getMin();
+	E getMin();
 	
 	/**
 	 * Checks if the tree is empty (has no elements)
@@ -65,19 +65,19 @@ public interface BTree extends Iterable<Integer> {
 	 * @param otherTree all elements from this tree will be inserted
 	 * @return true if all elements could be inserted and false if one or more elements could not be inserted
 	 */
-	boolean addAll(BTree otherTree);
+	boolean addAll(BTree<E> otherTree);
 	
 	/**
 	 * Returns all elements without a specific order
 	 * @return all elements
 	 */
-	Integer[] getAllElements();
+	E[] getAllElements();
 	
 	/**
 	 * creates a deep clone of the BTree 
 	 * @return cloned tree
 	 */
-	BTree clone();
+	BTree<E> clone();
 	
 	void printInorder();
 	void printPostorder();

@@ -8,21 +8,23 @@ import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 
 public class MyBTreeTest {
 
+	/*
 	@Test 
 	public void insertFromFileTest() {
 		String directory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung1/";
 		String filename = "integers.txt";
 		String filepath = directory + filename;
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		tree.insert(filepath);
 		assertEquals("size shoudl be equal", 9, tree.size());
 		System.out.println(tree.size());
 		tree.printInorder();
-	}
+	}*/
+	
 	@Test
 	public void insertTest() {
 		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1};
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		for(Integer element: elements) {
 			boolean didInsertElement = tree.insert(element);
 			assertTrue("should insert element " + element.toString(), didInsertElement);
@@ -34,7 +36,7 @@ public class MyBTreeTest {
 	@Test
 	public void insertSameElementsTest() {
 		Integer[] elements = {5, 1, 9, 15, 18, 20, 5, 22} ;
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		for(int i = 0; i < elements.length; i++) {
 			Integer element = elements[i];
 			
@@ -55,13 +57,13 @@ public class MyBTreeTest {
 	 @Test
 	 public void addAllTest() {
 		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30};
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		for(Integer element: elements) {
 			tree.insert(element);
 		}
 			
 		Integer[] elementsOtherTree = {2, 3, 99, -1};
-		MyBTree otherTree = new MyBTree(1);
+		MyBTree<Integer> otherTree = new MyBTree<>(1);
 		for(Integer element : elementsOtherTree) {
 			otherTree.insert(element);
 		}
@@ -81,7 +83,7 @@ public class MyBTreeTest {
 	@Test
 	public void containTest() {
 		Integer[] elements = {5, 1, 9};
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		for(Integer element: elements) {
 			boolean didInsertElement = tree.insert(element);
 			assertTrue("should insert element " + element.toString(), didInsertElement);
@@ -102,18 +104,18 @@ public class MyBTreeTest {
 	@Test
 	public void sizeTest() {
 		Integer[] elements = {5, 1, 9, 4, 0, 99};
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		assertTrue("should insert all elements", tree.insertAll(elements));
 		assertEquals("should have the correct size", elements.length, tree.size());
 	}
 	@Test
 	public void heightTest() {
 		Integer[] elements = {5, 1};
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		assertTrue("should insert all elements", tree.insertAll(elements));
 		assertEquals("should have the correct height", 1, tree.height());
 		Integer[] elements2 = {5, 1, 3, 4, 0, 6};
-		MyBTree tree2 = new MyBTree(1);
+		MyBTree<Integer> tree2 = new MyBTree<>(1);
 		assertTrue("should insert all elements", tree2.insertAll(elements2));
 		assertEquals("should have the correct height", 2, tree2.height());
 	}
@@ -123,7 +125,7 @@ public class MyBTreeTest {
 		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1};
 		Integer expectedMin = ArrayUtility.min(elements);
 		Integer expectedMax = ArrayUtility.max(elements);
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		tree.insertAll(elements);
 		Integer actualMin = tree.getMin();
 		Integer actualMax = tree.getMax();
@@ -143,12 +145,12 @@ public class MyBTreeTest {
 	@Test
 	public void deepCloneTest() {
 		Integer[] elements = {5, 1, 9, 15, 18, 20, 22, 25, 30, 2, 3, 99, -1};
-		BTree tree = new MyBTree(2);
+		BTree<Integer> tree = new MyBTree<>(2);
 		for(Integer element: elements) {
 			tree.insert(element);
 		}
 		
-		BTree clonedTree = tree.clone();
+		BTree<Integer> clonedTree = tree.clone();
 		
 		clonedTree.insert(100);
 		clonedTree.insert(101);
@@ -160,7 +162,7 @@ public class MyBTreeTest {
 	}
 	
 	private void testEverthing(Integer[] elements, int ordinal) {
-		MyBTree tree = new MyBTree(ordinal);
+		MyBTree<Integer> tree = new MyBTree<>(ordinal);
 		for(Integer element: elements) {
 			boolean didInsertElement = tree.insert(element);
 			assertTrue("should insert element " + element.toString(), didInsertElement);
@@ -192,7 +194,7 @@ public class MyBTreeTest {
 	
 	@Test
 	public void deleteTest() {
-		MyBTree tree = new MyBTree(2);
+		MyBTree<Integer> tree = new MyBTree<>(2);
 		tree.insert(2);
 		assertTrue("should delete element", tree.delete(2));
 		

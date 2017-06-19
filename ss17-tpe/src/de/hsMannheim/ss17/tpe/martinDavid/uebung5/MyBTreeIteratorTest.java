@@ -10,7 +10,7 @@ public class MyBTreeIteratorTest {
 
 	@Test
 	public void testEmptyTree() {
-		MyBTree tree = new MyBTree(2);
+		MyBTree<Integer> tree = new MyBTree<>(2);
 		for(Integer number: tree) {
 			fail("Tree is empty and should not iterate at all");
 		}
@@ -19,7 +19,7 @@ public class MyBTreeIteratorTest {
 	
 	@Test
 	public void testWithOneElement() {
-		MyBTree tree = new MyBTree(2);
+		MyBTree<Integer> tree = new MyBTree<>(2);
 		
 		Integer expectedNumber = 7;
 		tree.insert(expectedNumber);
@@ -39,7 +39,7 @@ public class MyBTreeIteratorTest {
 		String directory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung5/";
 		String filename = "integers.txt";
 		String filepath = directory + filename;
-		MyBTree tree = new MyBTree(1);
+		MyBTree<Integer> tree = new MyBTree<>(1);
 		tree.insert(filepath);
 		
 		int iterationCount = 0;

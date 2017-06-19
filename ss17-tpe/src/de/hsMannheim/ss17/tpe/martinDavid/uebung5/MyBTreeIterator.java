@@ -1,16 +1,16 @@
 package de.hsMannheim.ss17.tpe.martinDavid.uebung5;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.LinkedList;
-
-public class MyBTreeIterator implements Iterator<Integer> {
-	private LinkedList queue = new LinkedList();
-	private BTreeNode currentNode;
+public class MyBTreeIterator<E extends Comparable<E>> implements Iterator<E> {
+	private List<BTreeNode<E>> queue = new ArrayList<>();
+	private BTreeNode<E> currentNode;
 	private int currentElementIndex = 0;
-	public MyBTreeIterator(BTreeNode node) {
+	public MyBTreeIterator(BTreeNode<E> node) {
 		if(node != null && !node.isEmpty()) {
-			queue.addLast(node);
+			queue.add(queue.size() - 1, node);
 		}
 	}
 	@Override
@@ -19,19 +19,19 @@ public class MyBTreeIterator implements Iterator<Integer> {
 	}
 
 	@Override
-	public Integer next() {
+	public E next() {
 		if (currentNode == null) {
-			currentNode = (BTreeNode)queue.removeFirst();
-			for(BTreeNode child: currentNode.getChildren()) {
+			currentNode = (BTreeNode<E>) queue.remove(0);
+			for(BTreeNode<E> child: currentNode.getChildren()) {
 				if(child == null) {
 					break;
 				}
 				if(!child.isEmpty()) {
-					queue.addLast(child);
+					queue.add(queue.size() - 1, child);
 				}
 			}
 		}
-		Integer[] elements = currentNode.getElements();
+		E[] elements = currentNode.getElements();
 		if(currentElementIndex < elements.length && elements[currentElementIndex] != null) {
 			int index = currentElementIndex;
 			currentElementIndex++;

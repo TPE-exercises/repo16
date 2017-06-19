@@ -4,17 +4,17 @@ import static gdi.MakeItSimple.*;
 
 import de.hsMannheim.ss17.tpe.martinDavid.utilitiies.ArrayUtility;
 
-public class BTreeNode {
+public class BTreeNode<E extends Comparable<E>> {
 	
 	private final int ordinal;
-	private Integer[] elements;
-	private BTreeNode[] children;
-	private BTreeNode parent;
+	private E[] elements;
+	private BTreeNode<E>[] children;
+	private BTreeNode<E> parent;
 	
 	BTreeNode(int ordinal) {
 		this.ordinal = ordinal;
 		// We need one element and children more that we can check if this node have to be splitted
-		elements = new Integer[2 * ordinal + 1];
+		elements = (E[]) new Comparable[2 * ordinal + 1];
 		children = new BTreeNode[2 * ordinal + 1 + 1];
 	}
 	
@@ -23,7 +23,7 @@ public class BTreeNode {
 	 * @param element to insert
 	 * @return true if the element can be inserted, false if not
 	 */
-	boolean insert(Integer element) {
+	boolean insert(E element) {
 		
 		if(isEmpty()) {
 			elements[0] = element;
@@ -61,12 +61,12 @@ public class BTreeNode {
 	 * @param rightSubtree subtree to insert at the right side of the inserted element
 	 * @return
 	 */
-	boolean insert(Integer element, BTreeNode leftSubtree, BTreeNode rightSubtree) {
+	boolean insert(E element, BTreeNode<E> leftSubtree, BTreeNode<E> rightSubtree) {
 		int indexToInsert = ArrayUtility.bestInsertPositionToLeftByBinarySearch(elements, elements.length, element);
 		if(indexToInsert == -1) {
 			return false;
 		}
-		Integer previousElement = elements[indexToInsert];
+		E previousElement = elements[indexToInsert];
 		if (previousElement != null) {
 			rightShiftElementsAndChildren(indexToInsert);
 		}
@@ -93,7 +93,7 @@ public class BTreeNode {
 	 */
 	int size() {
 		int size = ArrayUtility.nonNullElementCount(elements);
-		for(BTreeNode childNode: children) {
+		for(BTreeNode<E> childNode: children) {
 			if (childNode == null) {
 				break;
 			}
@@ -108,7 +108,7 @@ public class BTreeNode {
 	 */
 	int height() {
 		int maxHeight = 0;
-		for(BTreeNode childNode: children) {
+		for(BTreeNode<E> childNode: children) {
 			if (childNode == null) {
 				break;
 			}
@@ -122,7 +122,7 @@ public class BTreeNode {
 	 * Searches the min value in this TreeNode (and sub-nodes)
 	 * @return the min value in this TreeNode
 	 */
-	Integer getMin() {
+	E getMin() {
 		if(children[0] != null) {
 			return children[0].getMin();
 		} else {
@@ -137,7 +137,7 @@ public class BTreeNode {
 	 * Searches the max value in this TreeNode (and sub-nodes)
 	 * @return the max value in this TreeNode
 	 */
-	Integer getMax() {
+	E getMax() {
 		if(hasChildren()) {
 			//get the last children
 			for(int i = children.length - 1; i >= 0; i--) {
@@ -162,7 +162,7 @@ public class BTreeNode {
 	 * @param object 
 	 * @return true when the object is already in the tree and false if not
 	 */
-	boolean contains(Integer o) {
+	boolean contains(E o) {
 		return linearContains(o);
 	}
 	
@@ -171,11 +171,11 @@ public class BTreeNode {
 	 * @param object 
 	 * @return true when the object is already in the tree and false if not
 	 */
-	private boolean linearContains(Integer o) {
+	private boolean linearContains(E o) {
 		for(int index = 0; index < elements.length; index++) {
-			Integer element = elements[index];
+			E element = elements[index];
 			
-			if (element == null || o < element) {
+			if (element == null || o.compareTo(element) == -1) {
 				//continue search in the child node at the same index
 				return linearContainsInChildNode(index, o);
 			}
@@ -195,8 +195,8 @@ public class BTreeNode {
 	 * @param object 
 	 * @return true when the object is already in the subtree and false if not
 	 */
-	private boolean linearContainsInChildNode(int index, Integer element) {
-		BTreeNode childNode = children[index];
+	private boolean linearContainsInChildNode(int index, E element) {
+		BTreeNode<E> childNode = children[index];
 		if (childNode != null) {
 			return childNode.linearContains(element);
 		}
@@ -215,8 +215,8 @@ public class BTreeNode {
 	 * Creates a deep clone of this BTreeNode
 	 * @return deep clone
 	 */
-	BTreeNode deepClone() {
-		BTreeNode newNode = new BTreeNode(ordinal);
+	BTreeNode<E> deepClone() {
+		BTreeNode<E> newNode = new BTreeNode<E>(ordinal);
 		
 		//Clone elements
 		for(int i = 0; i< elements.length; i++) {
@@ -240,8 +240,8 @@ public class BTreeNode {
 	 * Returns all elements without a specific order
 	 * @return all elements
 	 */
-	Integer[] getAllElements() {
-		Integer[] allElements = new Integer[size()];
+	E[] getAllElements() {
+		E[] allElements = (E[]) new Comparable[size()];
 		
 		for(int i = 0; i < elements.length; i++) {
 			if(elements[i] != null) {
@@ -278,14 +278,14 @@ public class BTreeNode {
 			}
 		}
 		
-		for(Integer element : elements) {	
+		for(E element : elements) {	
 			if(element != null)
 				print(element + " ");
 		}
 	}
 	
 	void printPreorder() {
-		for(Integer element : elements) {	
+		for(E element : elements) {	
 			if(element != null)
 				print(element + " ");
 		}
@@ -299,7 +299,7 @@ public class BTreeNode {
 	
 	void printLevel(int level) {
 		if(level == 0) {
-			for(Integer element : elements) {
+			for(E element : elements) {
 				if(element != null) {					
 					print(element + " ");
 				}
@@ -337,8 +337,8 @@ public class BTreeNode {
 	 * @param startIndex
 	 * @param endIndex
 	 */
-	private BTreeNode cloneFromStartIndexToEndIndex(int startIndex, int endIndex) {
-		BTreeNode treeNode = new BTreeNode(ordinal);
+	private BTreeNode<E> cloneFromStartIndexToEndIndex(int startIndex, int endIndex) {
+		BTreeNode<E> treeNode = new BTreeNode<E>(ordinal);
 		
 		//copy the elements
 		for(int i = startIndex; i <= endIndex; i++) {
@@ -347,7 +347,7 @@ public class BTreeNode {
 		
 		//copy the childs
 		for(int i = startIndex; i <= endIndex + 1; i++) {
-			BTreeNode child = children[i];
+			BTreeNode<E> child = children[i];
 			if (child == null) {
 				break;
 			}
@@ -368,16 +368,16 @@ public class BTreeNode {
 	
 	private void burst() {
 		int middleIndex = elements.length/2;
-		int middleElement = elements[middleIndex];
+		E middleElement = elements[middleIndex];
 		
-		BTreeNode currentParent = parent;
+		BTreeNode<E> currentParent = parent;
 		if (currentParent == null) {
-			currentParent = new BTreeNode(ordinal);
+			currentParent = new BTreeNode<E>(ordinal);
 		}
 		
-		BTreeNode rightSubtree = cloneFromStartIndexToEndIndex(middleIndex + 1, elements.length - 1);
+		BTreeNode<E> rightSubtree = cloneFromStartIndexToEndIndex(middleIndex + 1, elements.length - 1);
 		removeElementsAndChildrenFromIndex(middleIndex);
-		BTreeNode leftSubtree = this;
+		BTreeNode<E> leftSubtree = this;
 		currentParent.insert(middleElement, leftSubtree, rightSubtree);
 	}
 	
@@ -391,7 +391,7 @@ public class BTreeNode {
 	 * @param element to insert
 	 * @param position to insert the element
 	 */
-	private void insertIntoNode(Integer element, int position) {
+	private void insertIntoNode(E element, int position) {
 		
 		//Move all elements from index position (with the old element) to the right
 		for(int i = elements.length - 1; i > position; i--) {
@@ -415,13 +415,13 @@ public class BTreeNode {
 	 * Returns the parent of this TreeNode
 	 * @return parent of this TreeNode
 	 */
-	public BTreeNode getParent() {
+	public BTreeNode<E> getParent() {
 		return parent;
 	}
-	public BTreeNode[] getChildren() {
+	public BTreeNode<E>[] getChildren() {
 		return children;
 	}
-	public Integer[] getElements() {
+	public E[] getElements() {
 		return elements;
 	}
 }

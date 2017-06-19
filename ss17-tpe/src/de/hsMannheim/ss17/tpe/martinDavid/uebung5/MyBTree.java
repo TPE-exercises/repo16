@@ -9,18 +9,18 @@ import java.sql.Array;
 import java.util.Iterator;
 import java.util.List;
 
-public class MyBTree implements BTree, Iterable<Integer> {
+public class MyBTree<E extends Comparable<E>> implements BTree<E>, Iterable<E> {
 	private final int ordinal;
-	private BTreeNode rootNode;
+	private BTreeNode<E> rootNode;
 	
 	MyBTree(int ordinal) {
 		this.ordinal = ordinal;
 	}
 	
 	@Override
-	public boolean insert(Integer element) {		
+	public boolean insert(E element) {		
 		if(rootNode == null) {
-			rootNode = new BTreeNode(ordinal);
+			rootNode = new BTreeNode<E>(ordinal);
 		}
 		
 		
@@ -36,8 +36,8 @@ public class MyBTree implements BTree, Iterable<Integer> {
 	 * @param elements
 	 * @return
 	 */
-	public boolean insertAll(Integer[] elements) {
-		for(Integer element: elements) {
+	public boolean insertAll(E[] elements) {
+		for(E element: elements) {
 			if(!insert(element)) {
 				return false;
 			}
@@ -47,13 +47,14 @@ public class MyBTree implements BTree, Iterable<Integer> {
 
 	@Override
 	public boolean insert(String filename) {
+		/*
 		Object file;
 		
 		try {
 			file = openInputFile(filename);
 			
 			while(!isEndOfInputFile(file)) {
-				int elementToInsert = readInt(file);
+				E elementToInsert = readInt(file);
 				insert(elementToInsert);
 			}
 		} catch(Exception e) {
@@ -61,11 +62,13 @@ public class MyBTree implements BTree, Iterable<Integer> {
 			return false;
 		}
 		
-		return true;
+		return true; */
+		//not possible with generics
+		return false;
 	}
 
 	@Override
-	public boolean contains(Integer element) {
+	public boolean contains(E element) {
 		if (rootNode != null) {
 			return rootNode.contains(element);
 		}
@@ -89,7 +92,7 @@ public class MyBTree implements BTree, Iterable<Integer> {
 	}
 
 	@Override
-	public Integer getMax() {
+	public E getMax() {
 		if (rootNode != null) {
 			return rootNode.getMax();
 		}
@@ -97,7 +100,7 @@ public class MyBTree implements BTree, Iterable<Integer> {
 	}
 
 	@Override
-	public Integer getMin() {
+	public E getMin() {
 		if (rootNode != null) {
 			return rootNode.getMin();
 		}
@@ -114,21 +117,21 @@ public class MyBTree implements BTree, Iterable<Integer> {
 	}
 	
 	@Override
-	public Integer[] getAllElements() {
+	public E[] getAllElements() {
 		if(rootNode != null) {
 			return rootNode.getAllElements();
 		}
 		
-		return new Integer[0];
+		return (E[]) new Comparable[0];
 	}
 
 	@Override
-	public boolean addAll(BTree otherTree) {
+	public boolean addAll(BTree<E> otherTree) {
 		
 		boolean allInsertionsSuccessfull = true;
 		
 		if(otherTree != null) {
-			for(int elementToInsert : otherTree.getAllElements()) {
+			for(E elementToInsert : otherTree.getAllElements()) {
 				if(!insert(elementToInsert)) {
 					//could not insert this element
 					allInsertionsSuccessfull = false;
@@ -140,8 +143,8 @@ public class MyBTree implements BTree, Iterable<Integer> {
 	}
 	
 	@Override
-	public BTree clone() {
-		MyBTree tree = new MyBTree(ordinal);
+	public BTree<E> clone() {
+		MyBTree<E> tree = new MyBTree<E>(ordinal);
 		tree.rootNode = rootNode.deepClone();
 		
 		return tree;
@@ -189,16 +192,16 @@ public class MyBTree implements BTree, Iterable<Integer> {
 	}
 
 	@Override
-	public Iterator<Integer> iterator() {
+	public Iterator<E> iterator() {
 		return new MyBTreeIterator(rootNode);
 	}
 
 	@Override
-	public boolean delete(Integer object) {
-		MyBTree newTree = new MyBTree(ordinal);
+	public boolean delete(E object) {
+		MyBTree<E> newTree = new MyBTree<E>(ordinal);
 		
 		boolean deleted = false;
-		Integer[] allElements = getAllElements();
+		E[] allElements = getAllElements();
 		for(int i = 0; i < allElements.length; i++) {
 			if(!deleted && allElements[i] == object) {
 				deleted = true;

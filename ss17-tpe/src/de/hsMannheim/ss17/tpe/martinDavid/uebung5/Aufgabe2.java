@@ -6,13 +6,13 @@ public class Aufgabe2 {
 	private static final int treeCount = 3;
 	private static final String rootDirectory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung1/";
 	
-	private static BTree[] trees;
+	private static BTree<Integer>[] trees;
 	private static int workingTreeIndex = 0;
 	
 	public static void main(String[] args) {
 		trees = new MyBTree[treeCount];
 		for(int i = 0; i < trees.length; i++) {
-			trees[i] = new MyBTree(ordinal);
+			trees[i] = new MyBTree<>(ordinal);
 		}
 		while(true) {
 			inputLoop();
@@ -133,7 +133,7 @@ public class Aufgabe2 {
 	/**
 	 * @return the current selected working tree
 	 */
-	private static BTree getWorkingTree() {
+	private static BTree<Integer> getWorkingTree() {
 		return trees[workingTreeIndex];
 	}
 	/**
