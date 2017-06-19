@@ -34,12 +34,12 @@ public class MyBTreeIteratorTest {
 		
 	}
 	@Test
-	public void testWithTenElements() {
+	public void testWithElementsFromFile() {
 		
 		String directory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung5/";
 		String filename = "integers.txt";
 		String filepath = directory + filename;
-		MyBTree tree = new MyBTree(1);
+		MyBTree tree = new MyBTree(2);
 		tree.insert(filepath);
 		
 		int iterationCount = 0;
