@@ -4,6 +4,7 @@ public class ArrayUtility {
 	/**
 	 * finds the best insert position for an element in an ascending ordered
 	 * subrange from 0 to `endIndex` with the binary search algorithm
+	 * @param <E>
 	 * 
 	 * @param array
 	 *            - array to find the inserting position
@@ -13,7 +14,7 @@ public class ArrayUtility {
 	 *            - element to insert
 	 * @return the index of the best insert position for the `elementToInsert` or -1 if the element is already present
 	 */
-	public static int bestInsertPositionToLeftByBinarySearch(Integer[] array, int endIndex, Integer elementToInsert) {
+	public static <E extends Comparable<E>> int bestInsertPositionToLeftByBinarySearch(E[] array, int endIndex, E elementToInsert) {
 		if(elementToInsert == null) {
 			return -1;
 		}
@@ -23,7 +24,7 @@ public class ArrayUtility {
 			int distanceBetweenStartAndEndIndex = endIndex - startIndex;
 			int middleIndex = startIndex + (distanceBetweenStartAndEndIndex / 2);
 
-			Integer middleElement = array[middleIndex];
+			E middleElement = array[middleIndex];
 			if (middleElement == null){
 				endIndex = middleIndex;
 				continue;
@@ -34,9 +35,9 @@ public class ArrayUtility {
 			
 			int rightIndex = middleIndex + 1;
 		
-			Integer rightElement = array[rightIndex];
+			E rightElement = array[rightIndex];
 			if (rightElement == null){
-				if (middleElement < elementToInsert) {
+				if (middleElement.compareTo(elementToInsert) == -1) {
 					return rightIndex;
 				} else {
 					endIndex = middleIndex;
@@ -47,12 +48,12 @@ public class ArrayUtility {
 				return -1;
 			}
 			
-			boolean isBestInsertPosition = middleElement < elementToInsert && 
-											rightElement > elementToInsert;
+			boolean isBestInsertPosition = middleElement.compareTo(elementToInsert) == -1 && 
+					rightElement.compareTo(elementToInsert) == 1;
 
 			if (isBestInsertPosition) {
 				return rightIndex;
-			} else if (middleElement > elementToInsert) {
+			} else if (middleElement.compareTo(elementToInsert) == 1) {
 				endIndex = middleIndex;
 			} else {
 				startIndex = middleIndex;
@@ -73,20 +74,20 @@ public class ArrayUtility {
 	 *            - element to insert
 	 * @return the index of the best insert position for the `elementToInsert` or -1 if the element is already present
 	 */
-	public static int bestInsertPositionToLeftByLinearSearch(Integer[] array, int endIndex, Integer elementToInsert) {
+	public static <E extends Comparable<E>> int bestInsertPositionToLeftByLinearSearch(E[] array, int endIndex, E elementToInsert) {
 		if (elementToInsert == null) {
 			return -1;
 		}
 		int insertIndex = 0;
 		while(insertIndex < endIndex) {
-			Integer currentElement = array[insertIndex];
+			E currentElement = array[insertIndex];
 			if (currentElement == null) {
 				return insertIndex;
 			}
 			if (currentElement.equals(elementToInsert)) {
 				return -1;
 			}
-			if (currentElement > elementToInsert) {
+			if (currentElement.compareTo(elementToInsert) == 1) {
 				return insertIndex;
 			}
 			insertIndex++;
@@ -99,7 +100,7 @@ public class ArrayUtility {
 	 * @param array - array to search in
 	 * @return number of non null elements in the array
 	 */
-	public static int nonNullElementCount(Integer[] array) {
+	public static <E> int nonNullElementCount(E[] array) {
 		for(int index = 0; index < array.length; index++) {
 			if (array[index] == null) {
 				return index;
@@ -116,7 +117,7 @@ public class ArrayUtility {
 	 * @param toInsert
 	 * @return true if the insertion was succesful and false if not
 	 */
-	public static boolean insertArrayIntoArray(Integer[] originalArray, Integer[] toInsert) {
+	public static <E> boolean insertArrayIntoArray(E[] originalArray, E[] toInsert) {
 		int indexCounterToInsert = 0;
 		
 		for(int i = 0; i < originalArray.length; i++) {
@@ -144,10 +145,10 @@ public class ArrayUtility {
 	 * @param array 
 	 * @return smallest element
 	 */
-	public static Integer min(Integer[] array) {
-        Integer min = array[0];
+	public static <E extends Comparable<E>> E min(E[] array) {
+        E min = array[0];
         for (int i = 1; i < array.length; i++) {
-            if (array[i] < min) {
+            if (array[i].compareTo(min) == -1) {
                 min = array[i];
             }
         }
@@ -158,10 +159,10 @@ public class ArrayUtility {
 	 * @param array 
 	 * @return biggest element
 	 */
-	public static Integer max(Integer[] array) {
-        Integer max = array[0];
+	public static <E extends Comparable<E>> E max(E[] array) {
+        E max = array[0];
         for (int i = 1; i < array.length; i++) {
-            if (array[i] > max) {
+            if (array[i].compareTo(max) == 1) {
             	max = array[i];
             }
         }
