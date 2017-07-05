@@ -1,4 +1,4 @@
-package klausurvorbereitung;
+package klausurvorbereitung.ss07.aufgabe4;
 
 public class WarteschlangenKontrolle {
 
@@ -7,6 +7,7 @@ public class WarteschlangenKontrolle {
 	// Methode zum Einfügen eines neu vom Graphikprogramm  
 	// produzierten Druckjobs in die Schlange 
 	void put(DruckJob dj) { 
+		
 	} 
 	//Methode zum Bereitstellen des vordersten Druckjobs aus der 
 	//Schlange an den Drucker 
