@@ -39,11 +39,7 @@ public class MyBTreeIteratorTest {
 		String directory = "src/de/hsMannheim/ss17/tpe/martinDavid/uebung5/";
 		String filename = "integers.txt";
 		String filepath = directory + filename;
-<<<<<<< HEAD
 		MyBTree<Integer> tree = new MyBTree<>(1);
-=======
-		MyBTree tree = new MyBTree(2);
->>>>>>> branch 'master' of https://github.com/TPE-exercises/repo16.git
 		tree.insert(filepath);
 		
 		int iterationCount = 0;
