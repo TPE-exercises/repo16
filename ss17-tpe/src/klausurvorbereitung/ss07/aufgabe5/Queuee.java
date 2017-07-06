@@ -18,8 +18,19 @@ public class Queuee<E> implements Iterable<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new Iterator<E>() {
+
+			@Override
+			public boolean hasNext() {
+				return Queuee.this.isEmpty();
+			}
+
+			@Override
+			public E next() {
+				return Queuee.this.leave();
+			}
+		};
 	}
 	
 }
