@@ -6,13 +6,23 @@ public class WarteschlangenKontrolle {
 	
 	// Methode zum Einfügen eines neu vom Graphikprogramm  
 	// produzierten Druckjobs in die Schlange 
-	void put(DruckJob dj) { 
+	synchronized void put(DruckJob dj) { 
+		q.put(dj);
 		
+		notifyAll();
 	} 
 	//Methode zum Bereitstellen des vordersten Druckjobs aus der 
 	//Schlange an den Drucker 
-	DruckJob get(){ 
-		return null;
+	synchronized DruckJob get() throws InterruptedException{ 
+		while(q.isEmpty()) {
+			wait();
+		}
+		
+		DruckJob druckJob = q.get();
+		
+		notifyAll();
+		
+		return druckJob;
 	} 
 	
 }
